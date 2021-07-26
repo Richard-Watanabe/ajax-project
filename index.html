@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
+  <link rel="icon" href="images/app-logo.png">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -20,11 +20,18 @@
         </nav>
         <div class="column-full">
           <div class="row justify-center">
-            <img src="https://static.wikia.nocookie.net/disney/images/9/96/Studio_Ghibli_Logo.jpg/revision/latest/scale-to-width-down/1000?cb=20140621101318" alt="ghibli-logo" class="ghibli-logo">
-            <h1 class="logo-my white-text">MY</h1>
-            <h2 class="logo-review white-text">MOVIE REVIEW</h2>
+            <img src="images/app-logo.png" alt="ghibli-logo" class="ghibli-logo">
           </div>
         </div>
+        <form>
+          <div class="column-full">
+            <label for="movie-title" class="white-text">Find movie</label>
+              <div>
+                <select id="movie-title" name="movie-title" required>
+                </select>
+              </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
