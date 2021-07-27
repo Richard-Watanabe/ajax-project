@@ -14,6 +14,7 @@
 }
 
 .column-full,
+.column-75,
 .column-half {
   width: 100%;
 }
@@ -24,11 +25,16 @@
   }
 
   .column-full,
+  .column-75,
   .column-half {
     padding: 0 0.75rem;
   }
 
   .column-half {
     width: 50%;
+  }
+
+  .column-75 {
+    width: 75%;
   }
 }

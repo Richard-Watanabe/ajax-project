@@ -5,8 +5,11 @@
 
 label {
   display: inline-block;
-  margin-top: 2rem;
   font-size: 2rem;
+}
+
+form {
+  margin-left: 2rem;
 }
 
 .home-body {
@@ -21,6 +24,9 @@ label {
 
 .justify-center {
   justify-content: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .white-text {
@@ -29,7 +35,7 @@ label {
 
 .ghibli-logo {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .my-review {
@@ -39,14 +45,27 @@ label {
 }
 
 .select {
-  width: 80%;
+  width: 77%;
   border-radius: 5px;
   font-size: 1.5rem;
   color: gray;
-  padding: 0.2rem 0.3rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 1rem;
+  margin-bottom: 10rem;
 }
 
 .select:focus {
   border: 2px solid #0091c8;
   outline: none;
+}
+
+.go {
+  background-color: #0291c8;
+  border-radius: 5px;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  font-size: 1.5rem;
+  margin-left: 0.1rem;
 }
