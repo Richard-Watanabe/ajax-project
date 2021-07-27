@@ -1,0 +1,86 @@
+* {
+  font-family: sans-serif;
+  font-weight: 300;
+}
+
+label {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+form {
+  margin-left: 2rem;
+}
+
+.home-body {
+  width: 100%;
+  height: 100vh;
+  background-color: #02aff0;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.white-text {
+  color: white;
+}
+
+.ghibli-logo {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.my-review {
+  text-decoration: none;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.my-review:hover {
+  color: rgb(221, 226, 232);
+}
+
+.select {
+  width: 86%;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  color: gray;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 1rem;
+  margin-bottom: 10rem;
+}
+
+.select:focus {
+  border: 2px solid #0091c8;
+  outline: none;
+}
+
+.go {
+  background-color: #0291c8;
+  border-radius: 5px;
+  border: none;
+  padding: 0.35rem 0.4rem;
+  font-size: 1.5rem;
+  margin-left: 0.1rem;
+  cursor: pointer;
+}
+
+.go:hover {
+  background-color: #006d98;
+}
+
+.go:active {
+  transform: scale(0.9);
+}

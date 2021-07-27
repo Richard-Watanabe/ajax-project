@@ -4,12 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
+  <link rel="icon" href="images/app-logo.png">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div data-view="home-screen">
+    <div class="home-body">
+      <div class="container">
+        <nav class="column-full">
+          <div class="row flex-end">
+            <a href="#" class ="white-text my-review">My Reviews</a>
+          </div>
+        </nav>
+        <div class="column-75 justify-center">
+          <div class="row justify-center">
+            <img src="images/app-logo.png" alt="ghibli-logo" class="ghibli-logo">
+          </div>
+        </div>
+        <form>
+          <div class="column-full">
+            <label for="title" class="white-text">Find movie</label>
+              <div>
+                <select id="title" name="title" class="select" required >
+                  <option value="">Select movie</option>
+                </select>
+                <input type="submit" value="GO" class="white-text go">
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <header>
   </header>
   <main>
