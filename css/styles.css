@@ -1,12 +1,12 @@
 * {
   font-family: sans-serif;
+  font-weight: 300;
 }
 
 label {
   display: inline-block;
   margin-top: 2rem;
   font-size: 2rem;
-  font-weight: 300;
 }
 
 .home-body {
@@ -36,4 +36,17 @@ label {
   text-decoration: none;
   margin-top: 2rem;
   font-size: 1.5rem;
+}
+
+.select {
+  width: 80%;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  color: gray;
+  padding: 0.2rem 0.3rem;
+}
+
+.select:focus {
+  border: 2px solid #0091c8;
+  outline: none;
 }
