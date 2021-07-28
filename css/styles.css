@@ -9,12 +9,13 @@ label {
   margin-top: 1rem;
 }
 
-form {
-  margin-left: 2rem;
-}
-
 header {
   padding: 0.3rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.search {
+  margin-left: 2rem;
 }
 
 .home-body {
@@ -96,6 +97,8 @@ header {
 .nav-logo {
   width: 25%;
   cursor: pointer;
+  position: relative;
+  right: 0.4rem;
 }
 
 .my-review-nav {
@@ -114,4 +117,65 @@ header {
 
 .align-center {
   align-items: center;
+}
+
+.review-title {
+  background-color: #00678c;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.review-sub {
+  background-color: #0091c8;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.description-text {
+  color: #585858;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+.ghibli-image {
+  object-fit: cover;
+  width: 100%;
+}
+
+.review-box {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.review-box:focus {
+  border: 2px solid #0091c8;
+  outline: none;
+}
+
+.save {
+  background-color: #00678c;
+  border-radius: 5px;
+  border: none;
+  padding: 0.35rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  float: right;
+  margin-top: 0.5rem;
+}
+
+.save:hover {
+  background-color: #007dab;
+}
+
+.save:active {
+  transform: scale(0.9);
 }

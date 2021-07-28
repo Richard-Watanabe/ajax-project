@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div data-view="home-screen">
-    <div class="home-body hidden">
+  <div data-view="home-screen" class="view">
+    <div class="home-body">
       <div class="container">
         <nav class="column-full">
           <div class="row flex-end">
@@ -23,7 +23,7 @@
             <img src="images/app-logo.png" alt="ghibli-logo" class="ghibli-logo">
           </div>
         </div>
-        <form>
+        <form class="search">
           <div class="column-full">
             <label for="title" class="white-text">Find movie</label>
               <div>
@@ -37,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div data-view="review-form">
+  <div data-view="review-form" class="view hidden">
     <header class="background-blue">
       <div class="container">
         <div class="column-full">
@@ -50,9 +50,28 @@
         </div>
       </div>
     </header>
+    <main>
+      <div class="container parent">
+        <div class="row">
+          <div class="column-half">
+            <div class="review-title white-text">My Neighbor Totoro</div>
+            <img src="https://www.denofgeek.com/wp-content/uploads/2018/02/totoro_0.jpg?resize=620%2C339" alt="totoro-image" class="ghibli-image">
+            <div class="review-sub white-text">Description:</div>
+            <div class="description-text">Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the
+            surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the
+            older sister seeks help from the spirits to find her.</div>
+           </div>
+          <div class="column-half">
+            <div class="review-sub white-text">Review:</div>
+            <form class="review-text">
+              <textarea type="text-area" id="review" rows="13" name="review" placeholder="Write your review here!" class="review-box" required></textarea>
+              <input type="submit" value="SAVE" class="white-text save">
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
-  <main>
-  </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

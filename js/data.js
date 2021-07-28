@@ -1,4 +1,4 @@
-/* exported data */
+/* exported ghibliData */
 
 var ghibliData = {
   view: 'home-screen',
