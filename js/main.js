@@ -4,7 +4,6 @@ var $navLogo = document.querySelector('.nav-logo');
 var $parent = document.querySelector('select');
 var $search = document.querySelector('.search');
 var $reviewParent = document.querySelector('.parent');
-// var $form = document.querySelector('.review-text');
 var $view = document.querySelectorAll('.view');
 
 // window.addEventListener('DOMContentLoaded', addReview);
@@ -101,6 +100,25 @@ function createDom(searchInfo) {
   $rowDiv.appendChild($columnDiv);
   $rowDiv.appendChild($columnDiv2);
 
+  $reviewForm.addEventListener('submit', saveReview);
+
+  var dataObject = {
+    title: $search.elements.title.value,
+    image: '',
+    description: '',
+    review: ''
+  };
+
+  function saveReview(event) {
+    event.preventDefault();
+    dataObject.entryId = ghibliData.nextReviewId;
+    ghibliData.nextReviewId++;
+    dataObject.review = $reviewForm.elements.review.value;
+    ghibliData.reviews.unshift(dataObject);
+    $reviewForm.reset();
+    switchView('home-screen');
+  }
+
   function getPoster(movieName) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=' + movieName);
@@ -111,6 +129,7 @@ function createDom(searchInfo) {
       $posterLink.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + posterPath);
       $posterLink.setAttribute('class', 'ghibli-image');
       $columnDiv.insertBefore($posterLink, $descriptionTitle);
+      dataObject.image = $posterLink.getAttribute('src');
     });
     xhr.send();
   }
@@ -126,6 +145,7 @@ function createDom(searchInfo) {
           $description.setAttribute('class', 'description-text');
           $description.textContent = description;
           $columnDiv.appendChild($description);
+          dataObject.description = $description.textContent;
         }
       }
     });
