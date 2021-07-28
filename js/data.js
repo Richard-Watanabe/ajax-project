@@ -6,5 +6,3 @@ var ghibliData = {
   editing: null,
   nextReviewId: 1
 };
-
-ghibliData.test = 'test';

@@ -170,6 +170,7 @@ header {
   cursor: pointer;
   float: right;
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .save:hover {
@@ -178,4 +179,8 @@ header {
 
 .save:active {
   transform: scale(0.9);
+}
+
+.margin-bottom {
+  margin-bottom: 5rem;
 }
