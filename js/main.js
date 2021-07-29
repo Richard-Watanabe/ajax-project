@@ -6,6 +6,7 @@ var $search = document.querySelector('.search');
 var $reviewParent = document.querySelector('.parent');
 var $view = document.querySelectorAll('.view');
 var $reviewForm = document.querySelector('.review-text');
+var $header = document.querySelector('header');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
@@ -136,6 +137,9 @@ function addDescription(parent) {
 function switchView(name) {
   ghibliData.view = name;
   for (var i = 0; i < $view.length; i++) {
+    if (name !== 'home-screen') {
+      $header.className = 'background-blue';
+    }
     if (name === $view[i].getAttribute('data-view')) {
       $view[i].className = 'view';
     } else {
