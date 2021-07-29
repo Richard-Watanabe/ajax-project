@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div data-view="home-screen">
+  <div data-view="home-screen" class="view">
     <div class="home-body">
       <div class="container">
         <nav class="column-full">
@@ -23,7 +23,7 @@
             <img src="images/app-logo.png" alt="ghibli-logo" class="ghibli-logo">
           </div>
         </div>
-        <form>
+        <form class="search">
           <div class="column-full">
             <label for="title" class="white-text">Find movie</label>
               <div>
@@ -37,10 +37,30 @@
       </div>
     </div>
   </div>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div data-view="review-form" class="view hidden">
+    <header class="background-blue">
+      <div class="container">
+        <div class="column-full">
+          <div class="row space-between align-center">
+            <img src="images/app-logo.png" alt="ghibli-logo" class="nav-logo">
+            <nav>
+              <a href="#" class="white-text my-review-nav">My Reviews</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container parent">
+        <form class="review-text">
+          <textarea type="text-area" id="review" rows="35" name="review"
+            placeholder="Write your review here!" class="review-box" required=""></textarea>
+          <input type="submit" value="SAVE"
+            class="white-text save margin-bottom">
+        </form>
+      </div>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

@@ -9,7 +9,12 @@ label {
   margin-top: 1rem;
 }
 
-form {
+header {
+  padding: 0.3rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.search {
   margin-left: 2rem;
 }
 
@@ -83,4 +88,101 @@ form {
 
 .go:active {
   transform: scale(0.9);
+}
+
+.background-blue {
+  background-color: #02aff0;
+}
+
+.nav-logo {
+  width: 25%;
+  cursor: pointer;
+  position: relative;
+  right: 0.4rem;
+}
+
+.my-review-nav {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.my-review-nav:hover {
+  color: rgb(221, 226, 232);
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.review-bar {
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.title-blue {
+  background-color: #00678c;
+}
+
+.sub-blue {
+  background-color: #0091c8;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.description-text {
+  color: #585858;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+.ghibli-image {
+  object-fit: cover;
+  width: 100%;
+  height: 38rem;
+}
+
+.review-box {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.review-box:focus {
+  border: 2px solid #0091c8;
+  outline: none;
+}
+
+.save {
+  background-color: #00678c;
+  border-radius: 5px;
+  border: none;
+  padding: 0.35rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  float: right;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.save:hover {
+  background-color: #007dab;
+}
+
+.save:active {
+  transform: scale(0.9);
+}
+
+.margin-bottom {
+  margin-bottom: 5rem;
 }
