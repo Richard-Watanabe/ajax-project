@@ -125,7 +125,7 @@ function addDescription(parent) {
     for (var i = 0; i < xhr.response.length; i++) {
       if ($title.textContent === xhr.response[i].title) {
         var descriptionUnique = xhr.response[i].description;
-        $description.setAttribute('class', 'description-text');
+        $description.setAttribute('class', 'description-text text');
         $description.textContent = descriptionUnique;
         parent.appendChild($description);
       }
