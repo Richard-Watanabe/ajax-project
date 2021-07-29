@@ -147,3 +147,61 @@ function switchView(name) {
     }
   }
 }
+
+// var addParent = document.querySelector('ul');
+
+function createReview(review) {
+  var $newList = document.createElement('li');
+
+  var $newRowDiv = document.createElement('div');
+  $newRowDiv.setAttribute('class', 'row');
+
+  var $newColumnDiv = document.createElement('div');
+  $newColumnDiv.setAttribute('class', 'column-half');
+
+  var $newTitle = document.createElement('div');
+  $newTitle.setAttribute('class', 'title-blue review-bar white-text');
+  $newTitle.textContent = review.title;
+
+  var $newDescriptionTitle = document.createElement('div');
+  $newDescriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $newDescriptionTitle.textContent = 'Description:';
+
+  var $newColumnDiv2 = document.createElement('div');
+  $newColumnDiv2.setAttribute('class', 'column-half');
+
+  var $newReviewTitle = document.createElement('div');
+  $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $newReviewTitle.textContent = 'Review:';
+
+  var $newReviewText = document.createElement('div');
+  $newReviewText.setAttribute('class', 'text');
+  $newReviewText.textContent = $reviewForm.elements.name.value;
+
+  addPoster($search.elements.title.value, $newColumnDiv);
+  addDescription($newColumnDiv);
+
+  $newColumnDiv2.appendChild($newReviewTitle);
+  $newColumnDiv2.appendChild($newReviewText);
+
+  $newColumnDiv.appendChild($newTitle);
+  $newColumnDiv.appendChild($newDescriptionTitle);
+
+  $rowDiv.appendChild($newColumnDiv);
+  $rowDiv.appendChild($newColumnDiv2);
+
+  $newList.appendChild($newRowDiv);
+
+  return $newList;
+}
+
+createReview();
+
+// function addReview(event) {
+//   for (var i = 0; i < ghibliData.reviews.length; i++) {
+//     var newReview = createReview(ghibliData.reviews[i]);
+//     addParent.appendChild(newReview);
+//   }
+// }
+
+// window.addEventListener('DOMContentLoaded', addReview);
