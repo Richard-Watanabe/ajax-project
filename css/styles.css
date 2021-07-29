@@ -119,23 +119,24 @@ header {
   align-items: center;
 }
 
-.review-title {
-  background-color: #00678c;
+.review-bar {
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
   font-size: 1.5rem;
-  font-style: italic;
   font-weight: 400;
   margin-bottom: 0.5rem;
 }
 
-.review-sub {
+.title-blue {
+  background-color: #00678c;
+}
+
+.sub-blue {
   background-color: #0091c8;
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .description-text {
