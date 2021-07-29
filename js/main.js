@@ -1,16 +1,14 @@
 /* global ghibliData */
 /* exported ghibliData */
-var $navLogo = document.querySelector('.nav-logo');
+
 var $parent = document.querySelector('select');
 var $search = document.querySelector('.search');
 var $reviewParent = document.querySelector('.parent');
 var $view = document.querySelectorAll('.view');
 
-// window.addEventListener('DOMContentLoaded', addReview);
 $search.addEventListener('submit', populateForm);
-$navLogo.addEventListener('click', goHome);
 
-function getGhibliMovies() {
+function populateSearchBar() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
   xhr.responseType = 'json';
@@ -29,22 +27,17 @@ function getGhibliMovies() {
   xhr.send();
 }
 
-getGhibliMovies();
+populateSearchBar();
 
 function populateForm(event) {
   event.preventDefault();
-  // var titleBase = $search.elements.title.value;
-  var dataObject = {
-    title: $search.elements.title.value,
-    description: getGhibliMovies()
-  };
-  var addNew = createDom(dataObject);
+  var addNew = manipulateForm();
   $reviewParent.prepend(addNew);
   switchView('review-form');
   $search.reset();
 }
 
-function createDom(searchInfo) {
+function manipulateForm() {
   var $rowDiv = document.createElement('div');
   $rowDiv.setAttribute('class', 'row');
 
@@ -58,10 +51,6 @@ function createDom(searchInfo) {
   var $descriptionTitle = document.createElement('div');
   $descriptionTitle.setAttribute('class', 'review-sub white-text');
   $descriptionTitle.textContent = 'Description:';
-
-  var $description = document.createElement('div');
-  $description.setAttribute('class', 'description-text');
-  $description.textContent = getGhibliMovies();
 
   var $columnDiv2 = document.createElement('div');
   $columnDiv2.setAttribute('class', 'column-half');
@@ -95,7 +84,6 @@ function createDom(searchInfo) {
 
   $columnDiv.appendChild($title);
   $columnDiv.appendChild($descriptionTitle);
-  $columnDiv.appendChild($description);
 
   $rowDiv.appendChild($columnDiv);
   $rowDiv.appendChild($columnDiv2);
@@ -115,7 +103,7 @@ function createDom(searchInfo) {
     ghibliData.nextReviewId++;
     dataObject.review = $reviewForm.elements.review.value;
     ghibliData.reviews.unshift(dataObject);
-    $reviewForm.reset();
+    $reviewParent.removeChild($rowDiv);
     switchView('home-screen');
   }
 
@@ -125,7 +113,14 @@ function createDom(searchInfo) {
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       var $posterLink = document.createElement('img');
-      var posterPath = xhr.response.results[0].poster_path;
+      var posterPath;
+      for (var i = 0; i < xhr.response.results.length; i++) {
+        if (xhr.response.results[i].title === 'Spirited Away' || xhr.response.results[i].title === 'Grave of the Fireflies' || xhr.response.results[i].title === 'Pom Poko') {
+          posterPath = xhr.response.results[1].poster_path;
+        } else {
+          posterPath = xhr.response.results[0].poster_path;
+        }
+      }
       $posterLink.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + posterPath);
       $posterLink.setAttribute('class', 'ghibli-image');
       $columnDiv.insertBefore($posterLink, $descriptionTitle);
@@ -156,13 +151,6 @@ function createDom(searchInfo) {
   return $rowDiv;
 }
 
-// function addReview(event) {
-//   for (var i = 0; i < ghibliData.reviews.length; i++) {
-//     var newReview = createDom(ghibliData.reviews[i]);
-//     $reviewParent.appendChild(newReview);
-//   }
-// }
-
 function switchView(name) {
   ghibliData.view = name;
   for (var i = 0; i < $view.length; i++) {
@@ -172,8 +160,4 @@ function switchView(name) {
       $view[i].className = 'view hidden';
     }
   }
-}
-
-function goHome(event) {
-  switchView('home-screen');
 }
