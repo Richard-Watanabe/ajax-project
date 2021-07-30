@@ -64,6 +64,9 @@ function populateForm(event) {
   addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
   switchView('review-form');
   $search.reset();
+  if ($rowDiv.childElementCount > 2) {
+    $rowDiv.firstElementChild.remove();
+  }
 }
 
 function saveReview(event) {
@@ -76,13 +79,30 @@ function saveReview(event) {
   };
   dataObject.reviewId = ghibliData.nextReviewId;
   ghibliData.nextReviewId++;
-  ghibliData.reviews.unshift(dataObject);
-  $reviewParent.removeChild($rowDiv);
-  var addForm = createReview(dataObject);
-  $ulParent.prepend(addForm);
-  $noEntry.className = 'hidden';
-  $reviewForm.reset();
   switchView('review-gallery');
+  if ($reviewNotes.textContent === '') {
+    ghibliData.reviews.unshift(dataObject);
+    $reviewParent.removeChild($rowDiv);
+    var addForm = createReview(dataObject);
+    $ulParent.prepend(addForm);
+    $noEntry.className = 'hidden';
+    $reviewForm.reset();
+  } else {
+    ghibliData.editing.title = $title.textContent;
+    ghibliData.editing.image = $posterLink.getAttribute('src');
+    ghibliData.editing.description = $description.textContent;
+    ghibliData.editing.review = $reviewForm.elements.review.value;
+    for (var i = 0; i < ghibliData.reviews.length; i++) {
+      if (ghibliData.reviews[i].reviewId === ghibliData.editing.reviewId) {
+        ghibliData.reviews[i] = ghibliData.editing;
+        var addEdit = createReview(ghibliData.editing);
+        var $list = document.querySelectorAll('[data-review-id]');
+        $list[i].replaceWith(addEdit);
+        switchView('review-gallery');
+        $reviewForm.reset();
+      }
+    }
+  }
 }
 
 function addPoster(movieName, parent, insertBefore) {
@@ -234,10 +254,12 @@ function addReview(event) {
 
 function goToMyReviews(event) {
   switchView('review-gallery');
+  $reviewForm.reset();
 }
 
 function goToHome(event) {
   switchView('home-screen');
+  $reviewForm.reset();
 }
 
 function stayOnView(event) {
@@ -251,6 +273,7 @@ if (ghibliData.reviews.length !== 0) {
 function refreshGoHome(event) {
   if (ghibliData.view !== 'review-gallery') {
     switchView('home-screen');
+    ghibliData.editing = null;
   }
 }
 
