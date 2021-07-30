@@ -13,6 +13,7 @@ var $logoNav = document.querySelector('.nav-logo');
 var $newButton = document.querySelector('.add-new-button');
 var $noEntry = document.querySelector('.no-entry');
 var $ulParent = document.querySelector('ul');
+var $reviewNotes = document.querySelector('#review');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
@@ -32,6 +33,7 @@ var $description = document.createElement('div');
 var $rowDiv = document.createElement('div');
 var $reviewTitle = document.createElement('div');
 var $descriptionTitle = document.createElement('div');
+var $columnDiv = document.createElement('div');
 
 function populateSearchBar() {
   var xhr = new XMLHttpRequest();
@@ -59,6 +61,7 @@ function populateForm(event) {
   var title = $search.elements.title.value;
   var addForm = createForm(title);
   $reviewParent.prepend(addForm);
+  addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
   switchView('review-form');
   $search.reset();
 }
@@ -80,39 +83,6 @@ function saveReview(event) {
   $noEntry.className = 'hidden';
   $reviewForm.reset();
   switchView('review-gallery');
-}
-
-function createForm(title) {
-  $rowDiv.setAttribute('class', 'row');
-
-  var $columnDiv = document.createElement('div');
-  $columnDiv.setAttribute('class', 'column-half');
-
-  $title.setAttribute('class', 'title-blue review-bar white-text');
-  $title.textContent = title;
-
-  $descriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $descriptionTitle.textContent = 'Description:';
-
-  var $columnDiv2 = document.createElement('div');
-  $columnDiv2.setAttribute('class', 'column-half');
-
-  $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $reviewTitle.textContent = 'Review:';
-
-  addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
-  addDescription($columnDiv);
-
-  $columnDiv2.appendChild($reviewTitle);
-  $columnDiv2.appendChild($reviewForm);
-
-  $columnDiv.appendChild($title);
-  $columnDiv.appendChild($descriptionTitle);
-
-  $rowDiv.appendChild($columnDiv);
-  $rowDiv.appendChild($columnDiv2);
-
-  return $rowDiv;
 }
 
 function addPoster(movieName, parent, insertBefore) {
@@ -166,6 +136,37 @@ function switchView(name) {
   }
 }
 
+function createForm(title) {
+  $rowDiv.setAttribute('class', 'row');
+
+  $columnDiv.setAttribute('class', 'column-half');
+
+  $title.setAttribute('class', 'title-blue review-bar white-text');
+  $title.textContent = title;
+
+  $descriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $descriptionTitle.textContent = 'Description:';
+
+  var $columnDiv2 = document.createElement('div');
+  $columnDiv2.setAttribute('class', 'column-half');
+
+  $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $reviewTitle.textContent = 'Review:';
+
+  addDescription($columnDiv);
+
+  $columnDiv2.appendChild($reviewTitle);
+  $columnDiv2.appendChild($reviewForm);
+
+  $columnDiv.appendChild($title);
+  $columnDiv.appendChild($descriptionTitle);
+
+  $rowDiv.appendChild($columnDiv);
+  $rowDiv.appendChild($columnDiv2);
+
+  return $rowDiv;
+}
+
 function createReview(review) {
   var $newList = document.createElement('li');
   $newList.setAttribute('data-review-id', review.reviewId);
@@ -203,7 +204,7 @@ function createReview(review) {
   $newReviewTitle.textContent = 'Review:';
 
   var $newReviewText = document.createElement('div');
-  $newReviewText.setAttribute('class', 'text');
+  $newReviewText.setAttribute('class', 'text review-notes');
   $newReviewText.textContent = review.review;
 
   $newColumnDiv2.appendChild($newReviewTitle);
@@ -253,7 +254,7 @@ function refreshGoHome(event) {
   }
 }
 
-function showEditForm() {
+function showEditForm(event) {
   if (event.target.matches('.fa-edit')) {
     var stringId = event.target.closest('li').getAttribute('data-review-id');
     for (var i = 0; i < ghibliData.reviews.length; i++) {
@@ -261,6 +262,19 @@ function showEditForm() {
         ghibliData.editing = ghibliData.reviews[i];
       }
     }
+    var title = $search.elements.title.value;
+    var addForm = createForm(title);
+    $reviewParent.prepend(addForm);
+    if ($rowDiv.childElementCount > 2) {
+      $rowDiv.firstElementChild.remove();
+    }
+    addPoster(ghibliData.editing.title, $columnDiv, $descriptionTitle);
     switchView('review-form');
+    $title.textContent = ghibliData.editing.title;
+    $posterLink.setAttribute('src', ghibliData.editing.image);
+    $descriptionTitle.textContent = 'Description:';
+    $description.textContent = ghibliData.editing.description;
+    $reviewTitle.textContent = 'Review:';
+    $reviewNotes.textContent = ghibliData.editing.review;
   }
 }
