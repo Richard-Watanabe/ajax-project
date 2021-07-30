@@ -220,4 +220,5 @@ li {
   float: right;
   margin-top: 0.1rem;
   margin-right: 2.75rem;
+  cursor: pointer;
 }

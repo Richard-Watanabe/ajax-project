@@ -254,5 +254,7 @@ function refreshGoHome(event) {
 }
 
 function showEditForm() {
-
+  if (event.target.matches('.fa-edit')) {
+    switchView('review-form');
+  }
 }
