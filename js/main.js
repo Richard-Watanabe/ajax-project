@@ -10,6 +10,7 @@ var $header = document.querySelector('header');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
+window.addEventListener('DOMContentLoaded', addReview);
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -42,8 +43,8 @@ populateSearchBar();
 function populateForm(event) {
   event.preventDefault();
   var title = $search.elements.title.value;
-  var addNew = createForm(title);
-  $reviewParent.prepend(addNew);
+  var addForm = createForm(title);
+  $reviewParent.prepend(addForm);
   switchView('review-form');
   $search.reset();
 }
@@ -60,8 +61,10 @@ function saveReview(event) {
   ghibliData.nextReviewId++;
   ghibliData.reviews.unshift(dataObject);
   $reviewParent.removeChild($rowDiv);
-  switchView('home-screen');
+  var addForm = createReview(dataObject);
+  $ulParent.prepend(addForm);
   $reviewForm.reset();
+  switchView('review-gallery');
 }
 
 function createForm(title) {
@@ -82,7 +85,7 @@ function createForm(title) {
   $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
   $reviewTitle.textContent = 'Review:';
 
-  addPoster($search.elements.title.value, $columnDiv);
+  addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
   addDescription($columnDiv);
 
   $columnDiv2.appendChild($reviewTitle);
@@ -97,7 +100,7 @@ function createForm(title) {
   return $rowDiv;
 }
 
-function addPoster(movieName, parent) {
+function addPoster(movieName, parent, insertBefore) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=' + movieName);
   xhr.responseType = 'json';
@@ -112,7 +115,7 @@ function addPoster(movieName, parent) {
     }
     $posterLink.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + posterPath);
     $posterLink.setAttribute('class', 'ghibli-image');
-    parent.insertBefore($posterLink, $descriptionTitle);
+    parent.insertBefore($posterLink, insertBefore);
   });
   xhr.send();
 }
@@ -148,7 +151,7 @@ function switchView(name) {
   }
 }
 
-// var addParent = document.querySelector('ul');
+var $ulParent = document.querySelector('ul');
 
 function createReview(review) {
   var $newList = document.createElement('li');
@@ -163,9 +166,17 @@ function createReview(review) {
   $newTitle.setAttribute('class', 'title-blue review-bar white-text');
   $newTitle.textContent = review.title;
 
+  var $newImage = document.createElement('img');
+  $newImage.setAttribute('src', review.image);
+  $newImage.setAttribute('class', 'ghibli-image');
+
   var $newDescriptionTitle = document.createElement('div');
   $newDescriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
   $newDescriptionTitle.textContent = 'Description:';
+
+  var $newDescription = document.createElement('div');
+  $newDescription.textContent = review.description;
+  $newDescription.setAttribute('class', 'description-text text');
 
   var $newColumnDiv2 = document.createElement('div');
   $newColumnDiv2.setAttribute('class', 'column-half');
@@ -176,32 +187,30 @@ function createReview(review) {
 
   var $newReviewText = document.createElement('div');
   $newReviewText.setAttribute('class', 'text');
-  $newReviewText.textContent = $reviewForm.elements.name.value;
+  $newReviewText.textContent = review.review;
 
-  addPoster($search.elements.title.value, $newColumnDiv);
-  addDescription($newColumnDiv);
+  // addPoster($newReviewTitle.textContent, $newColumnDiv, $newDescriptionTitle);
+  // addDescription($newColumnDiv);
 
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
   $newColumnDiv.appendChild($newTitle);
+  $newColumnDiv.appendChild($newImage);
   $newColumnDiv.appendChild($newDescriptionTitle);
+  $newColumnDiv.appendChild($newDescription);
 
-  $rowDiv.appendChild($newColumnDiv);
-  $rowDiv.appendChild($newColumnDiv2);
+  $newRowDiv.appendChild($newColumnDiv);
+  $newRowDiv.appendChild($newColumnDiv2);
 
   $newList.appendChild($newRowDiv);
 
   return $newList;
 }
 
-createReview();
-
-// function addReview(event) {
-//   for (var i = 0; i < ghibliData.reviews.length; i++) {
-//     var newReview = createReview(ghibliData.reviews[i]);
-//     addParent.appendChild(newReview);
-//   }
-// }
-
-// window.addEventListener('DOMContentLoaded', addReview);
+function addReview(event) {
+  for (var i = 0; i < ghibliData.reviews.length; i++) {
+    var newReview = createReview(ghibliData.reviews[i]);
+    $ulParent.appendChild(newReview);
+  }
+}
