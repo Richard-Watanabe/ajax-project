@@ -6,9 +6,23 @@ var $search = document.querySelector('.search');
 var $reviewParent = document.querySelector('.parent');
 var $view = document.querySelectorAll('.view');
 var $reviewForm = document.querySelector('.review-text');
+var $header = document.querySelector('header');
+var $myReviewNav = document.querySelector('.my-review-nav');
+var $myReview = document.querySelector('.my-review');
+var $logoNav = document.querySelector('.nav-logo');
+var $newButton = document.querySelector('.add-new-button');
+var $noEntry = document.querySelector('.no-entry');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
+window.addEventListener('DOMContentLoaded', addReview);
+$myReviewNav.addEventListener('click', goToMyReviews);
+$myReview.addEventListener('click', goToMyReviews);
+$logoNav.addEventListener('click', goToHome);
+window.addEventListener('DOMContentLoaded', stayOnView);
+$newButton.addEventListener('click', goToHome);
+$noEntry.addEventListener('click', goToHome);
+window.addEventListener('load', refreshGoHome);
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -41,8 +55,8 @@ populateSearchBar();
 function populateForm(event) {
   event.preventDefault();
   var title = $search.elements.title.value;
-  var addNew = createForm(title);
-  $reviewParent.prepend(addNew);
+  var addForm = createForm(title);
+  $reviewParent.prepend(addForm);
   switchView('review-form');
   $search.reset();
 }
@@ -59,8 +73,11 @@ function saveReview(event) {
   ghibliData.nextReviewId++;
   ghibliData.reviews.unshift(dataObject);
   $reviewParent.removeChild($rowDiv);
-  switchView('home-screen');
+  var addForm = createReview(dataObject);
+  $ulParent.prepend(addForm);
+  $noEntry.className = 'hidden';
   $reviewForm.reset();
+  switchView('review-gallery');
 }
 
 function createForm(title) {
@@ -81,7 +98,7 @@ function createForm(title) {
   $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
   $reviewTitle.textContent = 'Review:';
 
-  addPoster($search.elements.title.value, $columnDiv);
+  addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
   addDescription($columnDiv);
 
   $columnDiv2.appendChild($reviewTitle);
@@ -96,7 +113,7 @@ function createForm(title) {
   return $rowDiv;
 }
 
-function addPoster(movieName, parent) {
+function addPoster(movieName, parent, insertBefore) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=' + movieName);
   xhr.responseType = 'json';
@@ -111,7 +128,7 @@ function addPoster(movieName, parent) {
     }
     $posterLink.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + posterPath);
     $posterLink.setAttribute('class', 'ghibli-image');
-    parent.insertBefore($posterLink, $descriptionTitle);
+    parent.insertBefore($posterLink, insertBefore);
   });
   xhr.send();
 }
@@ -124,7 +141,7 @@ function addDescription(parent) {
     for (var i = 0; i < xhr.response.length; i++) {
       if ($title.textContent === xhr.response[i].title) {
         var descriptionUnique = xhr.response[i].description;
-        $description.setAttribute('class', 'description-text');
+        $description.setAttribute('class', 'description-text text');
         $description.textContent = descriptionUnique;
         parent.appendChild($description);
       }
@@ -136,10 +153,96 @@ function addDescription(parent) {
 function switchView(name) {
   ghibliData.view = name;
   for (var i = 0; i < $view.length; i++) {
+    if (name !== 'home-screen') {
+      $header.className = 'background-blue';
+    }
     if (name === $view[i].getAttribute('data-view')) {
       $view[i].className = 'view';
     } else {
       $view[i].className = 'view hidden';
     }
+  }
+}
+
+var $ulParent = document.querySelector('ul');
+
+function createReview(review) {
+  var $newList = document.createElement('li');
+
+  var $newRowDiv = document.createElement('div');
+  $newRowDiv.setAttribute('class', 'row');
+
+  var $newColumnDiv = document.createElement('div');
+  $newColumnDiv.setAttribute('class', 'column-half');
+
+  var $newTitle = document.createElement('div');
+  $newTitle.setAttribute('class', 'title-blue review-bar white-text');
+  $newTitle.textContent = review.title;
+
+  var $newImage = document.createElement('img');
+  $newImage.setAttribute('src', review.image);
+  $newImage.setAttribute('class', 'ghibli-image');
+
+  var $newDescriptionTitle = document.createElement('div');
+  $newDescriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $newDescriptionTitle.textContent = 'Description:';
+
+  var $newDescription = document.createElement('div');
+  $newDescription.textContent = review.description;
+  $newDescription.setAttribute('class', 'description-text text');
+
+  var $newColumnDiv2 = document.createElement('div');
+  $newColumnDiv2.setAttribute('class', 'column-half');
+
+  var $newReviewTitle = document.createElement('div');
+  $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $newReviewTitle.textContent = 'Review:';
+
+  var $newReviewText = document.createElement('div');
+  $newReviewText.setAttribute('class', 'text');
+  $newReviewText.textContent = review.review;
+
+  $newColumnDiv2.appendChild($newReviewTitle);
+  $newColumnDiv2.appendChild($newReviewText);
+
+  $newColumnDiv.appendChild($newTitle);
+  $newColumnDiv.appendChild($newImage);
+  $newColumnDiv.appendChild($newDescriptionTitle);
+  $newColumnDiv.appendChild($newDescription);
+
+  $newRowDiv.appendChild($newColumnDiv);
+  $newRowDiv.appendChild($newColumnDiv2);
+
+  $newList.appendChild($newRowDiv);
+
+  return $newList;
+}
+
+function addReview(event) {
+  for (var i = 0; i < ghibliData.reviews.length; i++) {
+    var newReview = createReview(ghibliData.reviews[i]);
+    $ulParent.appendChild(newReview);
+  }
+}
+
+function goToMyReviews(event) {
+  switchView('review-gallery');
+}
+
+function goToHome(event) {
+  switchView('home-screen');
+}
+
+function stayOnView(event) {
+  switchView(ghibliData.view);
+}
+
+if (ghibliData.reviews.length !== 0) {
+  $noEntry.className = 'hidden';
+}
+
+function refreshGoHome(event) {
+  if (ghibliData.view !== 'review-gallery') {
+    switchView('home-screen');
   }
 }
