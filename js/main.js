@@ -204,6 +204,9 @@ function createReview(review) {
   var $editIcon = document.createElement('i');
   $editIcon.setAttribute('class', 'far fa-edit');
 
+  var $deleteIcon = document.createElement('i');
+  $deleteIcon.setAttribute('class', 'far fa-window-close');
+
   var $newImage = document.createElement('img');
   $newImage.setAttribute('src', review.image);
   $newImage.setAttribute('class', 'ghibli-image');
@@ -230,6 +233,7 @@ function createReview(review) {
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
+  $newTitle.appendChild($deleteIcon);
   $newTitle.appendChild($editIcon);
 
   $newColumnDiv.appendChild($newTitle);

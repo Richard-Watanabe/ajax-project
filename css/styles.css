@@ -53,17 +53,22 @@ li {
   margin-top: 2rem;
   font-size: 1.5rem;
   font-weight: 400;
+  transition: 0.1s;
 }
 
 .my-review-nav {
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 400;
+  transition: 0.1s;
 }
 
-.my-review:hover,
+.my-review:hover {
+  transform: scale(1.1);
+}
+
 .my-review-nav:hover {
-  color: rgb(221, 226, 232);
+  color: rgb(210, 210, 210);
 }
 
 .select {
@@ -218,12 +223,27 @@ li {
 
 .fa-edit {
   float: right;
-  margin-top: 0.1rem;
-  margin-right: 2.75rem;
+  margin-top: 0.08rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.fa-window-close {
+  float: right;
+  font-size: 1.7rem;
+  margin-top: 0.025rem;
+  margin-right: 0.5rem;
   cursor: pointer;
   transition: 0.1s;
 }
 
 .fa-edit:hover {
   transform: scale(1.1);
+  color: rgb(219, 51, 219);
+}
+
+.fa-window-close:hover {
+  transform: scale(1.1);
+  color: red;
 }
