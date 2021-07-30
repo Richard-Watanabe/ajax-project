@@ -9,12 +9,20 @@ var $reviewForm = document.querySelector('.review-text');
 var $header = document.querySelector('header');
 var $myReviewNav = document.querySelector('.my-review-nav');
 var $myReview = document.querySelector('.my-review');
+var $logoNav = document.querySelector('.nav-logo');
+var $newButton = document.querySelector('.add-new-button');
+var $noEntry = document.querySelector('.no-entry');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
 window.addEventListener('DOMContentLoaded', addReview);
 $myReviewNav.addEventListener('click', goToMyReviews);
 $myReview.addEventListener('click', goToMyReviews);
+$logoNav.addEventListener('click', goToHome);
+window.addEventListener('DOMContentLoaded', stayOnView);
+$newButton.addEventListener('click', goToHome);
+$noEntry.addEventListener('click', goToHome);
+window.addEventListener('load', refreshGoHome);
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -67,6 +75,7 @@ function saveReview(event) {
   $reviewParent.removeChild($rowDiv);
   var addForm = createReview(dataObject);
   $ulParent.prepend(addForm);
+  $noEntry.className = 'hidden';
   $reviewForm.reset();
   switchView('review-gallery');
 }
@@ -193,9 +202,6 @@ function createReview(review) {
   $newReviewText.setAttribute('class', 'text');
   $newReviewText.textContent = review.review;
 
-  // addPoster($newReviewTitle.textContent, $newColumnDiv, $newDescriptionTitle);
-  // addDescription($newColumnDiv);
-
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
@@ -221,4 +227,22 @@ function addReview(event) {
 
 function goToMyReviews(event) {
   switchView('review-gallery');
+}
+
+function goToHome(event) {
+  switchView('home-screen');
+}
+
+function stayOnView(event) {
+  switchView(ghibliData.view);
+}
+
+if (ghibliData.reviews.length !== 0) {
+  $noEntry.className = 'hidden';
+}
+
+function refreshGoHome(event) {
+  if (ghibliData.view !== 'review-gallery') {
+    switchView('home-screen');
+  }
 }
