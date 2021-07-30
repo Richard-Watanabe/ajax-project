@@ -12,6 +12,7 @@ var $myReview = document.querySelector('.my-review');
 var $logoNav = document.querySelector('.nav-logo');
 var $newButton = document.querySelector('.add-new-button');
 var $noEntry = document.querySelector('.no-entry');
+var $ulParent = document.querySelector('ul');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
@@ -23,6 +24,7 @@ window.addEventListener('DOMContentLoaded', stayOnView);
 $newButton.addEventListener('click', goToHome);
 $noEntry.addEventListener('click', goToHome);
 window.addEventListener('load', refreshGoHome);
+$ulParent.addEventListener('click', showEditForm);
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -164,8 +166,6 @@ function switchView(name) {
   }
 }
 
-var $ulParent = document.querySelector('ul');
-
 function createReview(review) {
   var $newList = document.createElement('li');
   $newList.setAttribute('data-review-id', review.reviewId);
@@ -251,4 +251,8 @@ function refreshGoHome(event) {
   if (ghibliData.view !== 'review-gallery') {
     switchView('home-screen');
   }
+}
+
+function showEditForm() {
+
 }
