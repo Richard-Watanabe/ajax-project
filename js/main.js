@@ -255,6 +255,12 @@ function refreshGoHome(event) {
 
 function showEditForm() {
   if (event.target.matches('.fa-edit')) {
+    var stringId = event.target.closest('li').getAttribute('data-review-id');
+    for (var i = 0; i < ghibliData.reviews.length; i++) {
+      if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
+        ghibliData.editing = ghibliData.reviews[i];
+      }
+    }
     switchView('review-form');
   }
 }
