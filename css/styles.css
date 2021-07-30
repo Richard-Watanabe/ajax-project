@@ -215,3 +215,9 @@ li {
   margin-bottom: 4rem;
   color: #585858;
 }
+
+.fa-edit {
+  float: right;
+  margin-top: 0.1rem;
+  margin-right: 2.75rem;
+}

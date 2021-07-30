@@ -179,6 +179,9 @@ function createReview(review) {
   $newTitle.setAttribute('class', 'title-blue review-bar white-text');
   $newTitle.textContent = review.title;
 
+  var $editIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'far fa-edit');
+
   var $newImage = document.createElement('img');
   $newImage.setAttribute('src', review.image);
   $newImage.setAttribute('class', 'ghibli-image');
@@ -204,6 +207,8 @@ function createReview(review) {
 
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
+
+  $newTitle.appendChild($editIcon);
 
   $newColumnDiv.appendChild($newTitle);
   $newColumnDiv.appendChild($newImage);
