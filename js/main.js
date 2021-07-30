@@ -69,7 +69,7 @@ function saveReview(event) {
     description: $description.textContent,
     review: $reviewForm.elements.review.value
   };
-  dataObject.entryId = ghibliData.nextReviewId;
+  dataObject.reviewId = ghibliData.nextReviewId;
   ghibliData.nextReviewId++;
   ghibliData.reviews.unshift(dataObject);
   $reviewParent.removeChild($rowDiv);
@@ -168,6 +168,7 @@ var $ulParent = document.querySelector('ul');
 
 function createReview(review) {
   var $newList = document.createElement('li');
+  $newList.setAttribute('data-review-id', review.reviewId);
 
   var $newRowDiv = document.createElement('div');
   $newRowDiv.setAttribute('class', 'row');
