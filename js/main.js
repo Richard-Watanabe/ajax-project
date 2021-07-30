@@ -7,10 +7,14 @@ var $reviewParent = document.querySelector('.parent');
 var $view = document.querySelectorAll('.view');
 var $reviewForm = document.querySelector('.review-text');
 var $header = document.querySelector('header');
+var $myReviewNav = document.querySelector('.my-review-nav');
+var $myReview = document.querySelector('.my-review');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
 window.addEventListener('DOMContentLoaded', addReview);
+$myReviewNav.addEventListener('click', goToMyReviews);
+$myReview.addEventListener('click', goToMyReviews);
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -213,4 +217,8 @@ function addReview(event) {
     var newReview = createReview(ghibliData.reviews[i]);
     $ulParent.appendChild(newReview);
   }
+}
+
+function goToMyReviews(event) {
+  switchView('review-gallery');
 }
