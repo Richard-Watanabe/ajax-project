@@ -15,6 +15,7 @@ var $noEntry = document.querySelector('.no-entry');
 var $ulParent = document.querySelector('ul');
 var $reviewNotes = document.querySelector('#review');
 var $divModal = document.querySelector('.modal');
+var $cancel = document.querySelector('.cancel');
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -36,6 +37,7 @@ $noEntry.addEventListener('click', goToHome);
 window.addEventListener('load', refreshGoHome);
 $ulParent.addEventListener('click', showEditForm);
 $ulParent.addEventListener('click', openModal);
+$cancel.addEventListener('click', closeModal);
 
 function populateSearchBar() {
   var xhr = new XMLHttpRequest();
@@ -312,4 +314,8 @@ function openModal(event) {
   if (event.target.matches('.fa-window-close')) {
     $divModal.className = 'modal overlay';
   }
+}
+
+function closeModal(event) {
+  $divModal.className = 'modal hidden';
 }
