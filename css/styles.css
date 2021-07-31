@@ -226,7 +226,6 @@ li {
   margin-top: 0.08rem;
   margin-right: 1rem;
   cursor: pointer;
-  transition: 0.1s;
 }
 
 .fa-window-close {
@@ -235,7 +234,6 @@ li {
   margin-top: 0.025rem;
   margin-right: 0.5rem;
   cursor: pointer;
-  transition: 0.1s;
 }
 
 .fa-edit:hover {
@@ -299,4 +297,8 @@ li {
 .question {
   margin-top: 2rem;
   font-weight: 500;
+}
+
+.no-review-text {
+  margin-bottom: 3rem;
 }

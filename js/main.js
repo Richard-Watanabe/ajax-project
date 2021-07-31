@@ -11,11 +11,12 @@ var $myReviewNav = document.querySelector('.my-review-nav');
 var $myReview = document.querySelector('.my-review');
 var $logoNav = document.querySelector('.nav-logo');
 var $newButton = document.querySelector('.add-new-button');
-var $noEntry = document.querySelector('.no-entry');
+var $noReview = document.querySelector('.no-review');
 var $ulParent = document.querySelector('ul');
 var $reviewNotes = document.querySelector('#review');
 var $divModal = document.querySelector('.modal');
 var $cancel = document.querySelector('.cancel');
+var $confirm = document.querySelector('.confirm');
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -33,11 +34,12 @@ $myReview.addEventListener('click', goToMyReviews);
 $logoNav.addEventListener('click', goToHome);
 window.addEventListener('DOMContentLoaded', stayOnView);
 $newButton.addEventListener('click', goToHome);
-$noEntry.addEventListener('click', goToHome);
+$noReview.addEventListener('click', goToHome);
 window.addEventListener('load', refreshGoHome);
 $ulParent.addEventListener('click', showEditForm);
 $ulParent.addEventListener('click', openModal);
 $cancel.addEventListener('click', closeModal);
+$confirm.addEventListener('click', deleteReview);
 
 function populateSearchBar() {
   var xhr = new XMLHttpRequest();
@@ -68,6 +70,7 @@ function populateForm(event) {
   addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
   switchView('review-form');
   $search.reset();
+  $reviewForm.reset();
   if ($rowDiv.childElementCount > 2) {
     $rowDiv.firstElementChild.remove();
   }
@@ -89,7 +92,7 @@ function saveReview(event) {
     $reviewParent.removeChild($rowDiv);
     var addForm = createReview(dataObject);
     $ulParent.prepend(addForm);
-    $noEntry.className = 'hidden';
+    $noReview.className = 'hidden';
     $reviewForm.reset();
   } else {
     ghibliData.editing.title = $title.textContent;
@@ -275,13 +278,12 @@ function stayOnView(event) {
 }
 
 if (ghibliData.reviews.length !== 0) {
-  $noEntry.className = 'hidden';
+  $noReview.className = 'hidden';
 }
 
 function refreshGoHome(event) {
   if (ghibliData.view !== 'review-gallery') {
     switchView('home-screen');
-    ghibliData.editing = null;
   }
 }
 
@@ -313,9 +315,31 @@ function showEditForm(event) {
 function openModal(event) {
   if (event.target.matches('.fa-window-close')) {
     $divModal.className = 'modal overlay';
+    var stringId = event.target.closest('li').getAttribute('data-review-id');
+    for (var i = 0; i < ghibliData.reviews.length; i++) {
+      if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
+        ghibliData.editing = ghibliData.reviews[i];
+      }
+    }
   }
 }
 
 function closeModal(event) {
   $divModal.className = 'modal hidden';
+}
+
+function deleteReview(event) {
+  for (var i = 0; i < ghibliData.reviews.length; i++) {
+    if (ghibliData.reviews[i].reviewId === ghibliData.editing.reviewId) {
+      ghibliData.reviews[i] = ghibliData.editing;
+      ghibliData.reviews.splice(i, 1);
+      var $list = document.querySelectorAll('[data-review-id]');
+      $list[i].remove($list[i]);
+      switchView('review-gallery');
+      $divModal.className = 'modal hidden';
+    }
+  }
+  if (ghibliData.reviews.length === 0) {
+    $noReview.className = 'row text-align no-review justify-center container';
+  }
 }
