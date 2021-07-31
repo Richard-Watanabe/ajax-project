@@ -14,6 +14,15 @@ var $newButton = document.querySelector('.add-new-button');
 var $noEntry = document.querySelector('.no-entry');
 var $ulParent = document.querySelector('ul');
 var $reviewNotes = document.querySelector('#review');
+var $divModal = document.querySelector('.modal');
+
+var $posterLink = document.createElement('img');
+var $title = document.createElement('div');
+var $description = document.createElement('div');
+var $rowDiv = document.createElement('div');
+var $reviewTitle = document.createElement('div');
+var $descriptionTitle = document.createElement('div');
+var $columnDiv = document.createElement('div');
 
 $search.addEventListener('submit', populateForm);
 $reviewForm.addEventListener('submit', saveReview);
@@ -26,14 +35,7 @@ $newButton.addEventListener('click', goToHome);
 $noEntry.addEventListener('click', goToHome);
 window.addEventListener('load', refreshGoHome);
 $ulParent.addEventListener('click', showEditForm);
-
-var $posterLink = document.createElement('img');
-var $title = document.createElement('div');
-var $description = document.createElement('div');
-var $rowDiv = document.createElement('div');
-var $reviewTitle = document.createElement('div');
-var $descriptionTitle = document.createElement('div');
-var $columnDiv = document.createElement('div');
+$ulParent.addEventListener('click', openModal);
 
 function populateSearchBar() {
   var xhr = new XMLHttpRequest();
@@ -303,5 +305,11 @@ function showEditForm(event) {
     $description.textContent = ghibliData.editing.description;
     $reviewTitle.textContent = 'Review:';
     $reviewNotes.textContent = ghibliData.editing.review;
+  }
+}
+
+function openModal(event) {
+  if (event.target.matches('.fa-window-close')) {
+    $divModal.className = 'modal overlay';
   }
 }

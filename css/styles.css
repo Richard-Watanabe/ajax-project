@@ -247,3 +247,56 @@ li {
   transform: scale(1.1);
   color: red;
 }
+
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 96, 155, 0.4);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.dialogue {
+  background-color: white;
+  height: 11.5rem;
+  width: 27rem;
+  margin: 12rem auto;
+  border-radius: 5px;
+  padding-top: 1rem;
+}
+
+.cancel {
+  background-color: #b6b6b6;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.cancel:hover {
+  background-color: #bdbdbd;
+}
+
+.confirm {
+  background-color: #dc2828;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.confirm:hover {
+  background-color: rgb(216, 79, 79);
+}
+
+.modal-button {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 2rem;
+}
+
+.question {
+  margin-top: 2rem;
+  font-weight: 500;
+}
