@@ -70,7 +70,6 @@ function populateForm(event) {
   addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
   switchView('review-form');
   $search.reset();
-  $reviewForm.reset();
   if ($rowDiv.childElementCount > 2) {
     $rowDiv.firstElementChild.remove();
   }
@@ -270,7 +269,8 @@ function goToMyReviews(event) {
 
 function goToHome(event) {
   switchView('home-screen');
-  $reviewForm.reset();
+  $reviewNotes.textContent = '';
+  $search.reset();
 }
 
 function stayOnView(event) {

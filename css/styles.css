@@ -61,6 +61,7 @@ li {
   font-size: 1.5rem;
   font-weight: 400;
   transition: 0.1s;
+  display: inline-block;
 }
 
 .my-review:hover {
@@ -68,7 +69,7 @@ li {
 }
 
 .my-review-nav:hover {
-  color: rgb(210, 210, 210);
+  transform: scale(1.1);
 }
 
 .select {
@@ -237,18 +238,16 @@ li {
 }
 
 .fa-edit:hover {
-  transform: scale(1.1);
   color: rgb(219, 51, 219);
 }
 
 .fa-window-close:hover {
-  transform: scale(1.1);
   color: red;
 }
 
 .overlay {
   position: fixed;
-  background-color: rgba(0, 96, 155, 0.4);
+  background-color: rgba(0, 60, 79, 0.5);
   top: 0;
   bottom: 0;
   left: 0;
@@ -257,9 +256,9 @@ li {
 
 .dialogue {
   background-color: white;
-  height: 11.5rem;
+  height: 12rem;
   width: 27rem;
-  margin: 12rem auto;
+  margin: 11rem auto;
   border-radius: 5px;
   padding-top: 1rem;
 }
