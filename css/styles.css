@@ -53,17 +53,23 @@ li {
   margin-top: 2rem;
   font-size: 1.5rem;
   font-weight: 400;
+  transition: 0.1s;
 }
 
 .my-review-nav {
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 400;
+  transition: 0.1s;
+  display: inline-block;
 }
 
-.my-review:hover,
+.my-review:hover {
+  transform: scale(1.1);
+}
+
 .my-review-nav:hover {
-  color: rgb(221, 226, 232);
+  transform: scale(1.1);
 }
 
 .select {
@@ -218,12 +224,80 @@ li {
 
 .fa-edit {
   float: right;
-  margin-top: 0.1rem;
-  margin-right: 2.75rem;
+  margin-top: 0.08rem;
+  margin-right: 1rem;
   cursor: pointer;
-  transition: 0.1s;
+}
+
+.fa-window-close {
+  float: right;
+  font-size: 1.7rem;
+  margin-top: 0.025rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .fa-edit:hover {
-  transform: scale(1.1);
+  color: rgb(219, 51, 219);
+}
+
+.fa-window-close:hover {
+  color: red;
+}
+
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 60, 79, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.dialogue {
+  background-color: white;
+  height: 12rem;
+  width: 27rem;
+  margin: 11rem auto;
+  border-radius: 5px;
+  padding-top: 1rem;
+}
+
+.cancel {
+  background-color: #b6b6b6;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.cancel:hover {
+  background-color: #bdbdbd;
+}
+
+.confirm {
+  background-color: #dc2828;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.confirm:hover {
+  background-color: rgb(216, 79, 79);
+}
+
+.modal-button {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 2rem;
+}
+
+.question {
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+.no-review-text {
+  margin-bottom: 3rem;
 }
