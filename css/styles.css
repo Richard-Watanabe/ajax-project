@@ -1,6 +1,7 @@
 * {
   font-family: sans-serif;
   font-weight: 300;
+  line-height: 1.2;
 }
 
 label {
@@ -10,8 +11,8 @@ label {
 }
 
 header {
-  padding: 0.3rem 0;
-  margin-bottom: 1.5rem;
+  padding: 0.4rem 0;
+  margin-bottom: 1rem;
 }
 
 li {
@@ -19,7 +20,7 @@ li {
 }
 
 .search {
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 .home-body {
@@ -46,6 +47,7 @@ li {
 .ghibli-logo {
   width: 100%;
   margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .my-review {
@@ -73,15 +75,11 @@ li {
 }
 
 .select {
-  width: 86%;
+  width: 85%;
   border-radius: 5px;
   font-size: 1.5rem;
   color: gray;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  padding-left: 0.3rem;
-  padding-right: 1rem;
-  margin-bottom: 10rem;
+  padding: 0.2rem 0;
 }
 
 .select:focus {
@@ -90,12 +88,13 @@ li {
 }
 
 .go {
+  width: 12%;
   background-color: #0291c8;
   border-radius: 5px;
   border: none;
   padding: 0.35rem 0.4rem;
   font-size: 1.5rem;
-  margin-left: 0.1rem;
+  margin-left: 0.3rem;
   cursor: pointer;
 }
 
@@ -120,7 +119,7 @@ li {
 }
 
 .nav-logo:hover {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .space-between {
@@ -153,7 +152,6 @@ li {
 
 .text {
   color: #585858;
-  line-height: 1.2;
   margin-bottom: 0.3rem;
 }
 
@@ -168,7 +166,6 @@ li {
   width: 100%;
   border-radius: 5px;
   font-size: 1.2rem;
-  margin: 0;
 }
 
 .review-box:focus {
@@ -184,12 +181,7 @@ li {
   font-size: 1.5rem;
   cursor: pointer;
   float: right;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.save:active {
-  transform: scale(0.9);
+  margin: 0.5rem 0;
 }
 
 .add-new-button {
@@ -217,7 +209,7 @@ li {
 
 .no-review {
   font-size: 1.2rem;
-  margin-top: 7rem;
+  margin-top: 5rem;
   margin-bottom: 4rem;
   color: #585858;
 }
@@ -256,7 +248,7 @@ li {
 
 .dialogue {
   background-color: white;
-  height: 12rem;
+  height: 10rem;
   width: 27rem;
   margin: 11rem auto;
   border-radius: 5px;
@@ -300,4 +292,8 @@ li {
 
 .no-review-text {
   margin-bottom: 3rem;
+}
+
+.flex-column {
+  flex-direction: column;
 }

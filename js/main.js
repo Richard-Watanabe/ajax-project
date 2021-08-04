@@ -167,7 +167,7 @@ function createForm(title) {
 
   $columnDiv.setAttribute('class', 'column-half');
 
-  $title.setAttribute('class', 'title-blue review-bar white-text');
+  $title.setAttribute('class', 'title-blue review-bar white-text italic');
   $title.textContent = title;
 
   $descriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
@@ -204,7 +204,7 @@ function createReview(review) {
   $newColumnDiv.setAttribute('class', 'column-half');
 
   var $newTitle = document.createElement('div');
-  $newTitle.setAttribute('class', 'title-blue review-bar white-text');
+  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic');
   $newTitle.textContent = review.title;
 
   var $editIcon = document.createElement('i');
