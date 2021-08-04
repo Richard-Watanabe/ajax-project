@@ -73,7 +73,7 @@ li {
 }
 
 .select {
-  width: 86%;
+  width: 80%;
   border-radius: 5px;
   font-size: 1.5rem;
   color: gray;
@@ -81,7 +81,6 @@ li {
   padding-bottom: 0.2rem;
   padding-left: 0.3rem;
   padding-right: 1rem;
-  margin-bottom: 10rem;
 }
 
 .select:focus {
@@ -90,12 +89,13 @@ li {
 }
 
 .go {
+  width: 12%;
   background-color: #0291c8;
   border-radius: 5px;
   border: none;
   padding: 0.35rem 0.4rem;
   font-size: 1.5rem;
-  margin-left: 0.1rem;
+  margin-left: 0.3rem;
   cursor: pointer;
 }
 
@@ -300,4 +300,8 @@ li {
 
 .no-review-text {
   margin-bottom: 3rem;
+}
+
+.flex-column {
+  flex-direction: column;
 }
