@@ -19,9 +19,9 @@
   width: 100%;
 }
 
-@media screen and (min-width: 1015px) {
+@media screen and (min-width: 768px) {
   .container {
-    max-width: 1100px;
+    max-width: 900px;
   }
 
   .column-full,
@@ -36,5 +36,96 @@
 
   .column-75 {
     width: 75%;
+  }
+
+  div.review-bar {
+    font-size: 1.05rem;
+  }
+
+  div.text {
+    font-size: 0.9rem;
+  }
+
+  textarea.review-box {
+    font-size: 1rem;
+  }
+
+  i.fa-edit {
+    font-size: 1.5rem;
+    float: right;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    bottom: 0.2rem;
+  }
+
+  i.fa-window-close {
+    font-size: 1.5rem;
+    margin-right: 0.1rem;
+    cursor: pointer;
+    float: right;
+    position: relative;
+    bottom: 0.1rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .column-full,
+  .column-75,
+  .column-half {
+    padding: 0 0.75rem;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+
+  .column-75 {
+    width: 75%;
+  }
+
+  a.my-review {
+    font-size: 2rem;
+  }
+
+  a.my-review-nav {
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+
+  div.review-bar {
+    font-size: 1.5rem;
+  }
+
+  div.text {
+    font-size: 1.2rem;
+  }
+
+  textarea.review-box {
+    font-size: 1.2rem;
+  }
+
+  i.fa-edit {
+    float: right;
+    font-size: 1.7rem;
+    margin-top: 0.08rem;
+    margin-right: 0.75rem;
+    cursor: pointer;
+    position: relative;
+    bottom: 0.06rem;
+  }
+
+  i.fa-window-close {
+    float: right;
+    font-size: 1.7rem;
+    margin-top: 0.025rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    top: 0.1rem;
   }
 }
