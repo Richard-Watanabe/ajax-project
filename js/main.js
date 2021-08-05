@@ -74,7 +74,7 @@ function populateForm(event) {
   var title = $search.elements.title.value;
   var addForm = createForm(title);
   $reviewParent.prepend(addForm);
-  addPoster($search.elements.title.value, $columnDiv, $descriptionTitle);
+  addPoster($search.elements.title.value, $columnDiv);
   switchView('review-form');
   $search.reset();
   if ($rowDiv.childElementCount > 2) {
@@ -118,7 +118,7 @@ function saveReview(event) {
   }
 }
 
-function addPoster(movieName, parent, insertBefore) {
+function addPoster(movieName, parent) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=' + movieName);
   $loading.className = 'spin';
@@ -135,7 +135,7 @@ function addPoster(movieName, parent, insertBefore) {
     }
     $posterLink.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + posterPath);
     $posterLink.setAttribute('class', 'ghibli-image');
-    parent.insertBefore($posterLink, insertBefore);
+    parent.appendChild($posterLink);
   });
   xhr.addEventListener('error', function () {
     window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
@@ -143,7 +143,7 @@ function addPoster(movieName, parent, insertBefore) {
   xhr.send();
 }
 
-function addDescription(parent) {
+function addDescription(parent, insertBefore) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
   $loading.className = 'spin';
@@ -155,7 +155,7 @@ function addDescription(parent) {
         var descriptionUnique = xhr.response[i].description;
         $description.setAttribute('class', 'description-text text');
         $description.textContent = descriptionUnique;
-        parent.appendChild($description);
+        parent.insertBefore($description, insertBefore);
       }
     }
   });
@@ -196,13 +196,13 @@ function createForm(title) {
   $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
   $reviewTitle.textContent = 'Review:';
 
-  addDescription($columnDiv);
+  addDescription($columnDiv2, $reviewTitle);
 
+  $columnDiv2.appendChild($descriptionTitle);
   $columnDiv2.appendChild($reviewTitle);
   $columnDiv2.appendChild($reviewForm);
 
   $columnDiv.appendChild($title);
-  $columnDiv.appendChild($descriptionTitle);
 
   $rowDiv.appendChild($columnDiv);
   $rowDiv.appendChild($columnDiv2);
@@ -253,6 +253,8 @@ function createReview(review) {
   $newReviewText.setAttribute('class', 'text review-notes');
   $newReviewText.textContent = review.review;
 
+  $newColumnDiv2.appendChild($newDescriptionTitle);
+  $newColumnDiv2.appendChild($newDescription);
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
@@ -261,8 +263,6 @@ function createReview(review) {
 
   $newColumnDiv.appendChild($newTitle);
   $newColumnDiv.appendChild($newImage);
-  $newColumnDiv.appendChild($newDescriptionTitle);
-  $newColumnDiv.appendChild($newDescription);
 
   $newRowDiv.appendChild($newColumnDiv);
   $newRowDiv.appendChild($newColumnDiv2);
@@ -318,7 +318,7 @@ function showEditForm(event) {
     if ($rowDiv.childElementCount > 2) {
       $rowDiv.firstElementChild.remove();
     }
-    addPoster(ghibliData.editing.title, $columnDiv, $descriptionTitle);
+    addPoster(ghibliData.editing.title, $columnDiv);
     switchView('review-form');
     $title.textContent = ghibliData.editing.title;
     $posterLink.setAttribute('src', ghibliData.editing.image);
