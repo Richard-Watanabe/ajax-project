@@ -17,6 +17,7 @@ var $reviewNotes = document.querySelector('#review');
 var $divModal = document.querySelector('.modal');
 var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
+var $loading = document.querySelector('.spin');
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -44,18 +45,24 @@ $confirm.addEventListener('click', deleteReview);
 function populateSearchBar() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
+  $loading.className = 'spin';
   xhr.responseType = 'json';
   var titleArray = [];
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.length; i++) {
+      $loading.className = 'spin hidden';
       titleArray.push(xhr.response[i].title);
       titleArray.sort();
     }
     for (var j = 0; j < titleArray.length; j++) {
+      $loading.className = 'spin hidden';
       var $option = document.createElement('option');
       $option.textContent = titleArray[j];
       $parent.appendChild($option);
     }
+  });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
 }
@@ -114,9 +121,11 @@ function saveReview(event) {
 function addPoster(movieName, parent, insertBefore) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=' + movieName);
+  $loading.className = 'spin';
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     var posterPath;
+    $loading.className = 'spin hidden';
     for (var i = 0; i < xhr.response.results.length; i++) {
       if (xhr.response.results[i].title === 'Spirited Away' || xhr.response.results[i].title === 'Grave of the Fireflies' || xhr.response.results[i].title === 'Pom Poko') {
         posterPath = xhr.response.results[1].poster_path;
@@ -128,14 +137,19 @@ function addPoster(movieName, parent, insertBefore) {
     $posterLink.setAttribute('class', 'ghibli-image');
     parent.insertBefore($posterLink, insertBefore);
   });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
+  });
   xhr.send();
 }
 
 function addDescription(parent) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
+  $loading.className = 'spin';
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    $loading.className = 'spin hidden';
     for (var i = 0; i < xhr.response.length; i++) {
       if ($title.textContent === xhr.response[i].title) {
         var descriptionUnique = xhr.response[i].description;
@@ -144,6 +158,9 @@ function addDescription(parent) {
         parent.appendChild($description);
       }
     }
+  });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
 }

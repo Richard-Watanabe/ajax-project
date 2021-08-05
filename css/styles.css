@@ -1,7 +1,7 @@
 * {
   font-family: sans-serif;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 label {
@@ -17,6 +17,14 @@ header {
 
 li {
   list-style-type: none;
+}
+
+.review-bar {
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
 }
 
 .search {
@@ -130,14 +138,6 @@ li {
   align-items: center;
 }
 
-.review-bar {
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
 .title-blue {
   background-color: #00678c;
 }
@@ -156,9 +156,8 @@ li {
 }
 
 .ghibli-image {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
-  height: 38rem;
   margin-bottom: 0.3rem;
 }
 
@@ -216,15 +215,16 @@ li {
 
 .fa-edit {
   float: right;
-  margin-top: 0.08rem;
-  margin-right: 1rem;
+  font-size: 1.6rem;
+  margin-top: 0.2rem;
+  margin-right: 0.75rem;
   cursor: pointer;
 }
 
 .fa-window-close {
   float: right;
   font-size: 1.7rem;
-  margin-top: 0.025rem;
+  margin-top: 0.2rem;
   margin-right: 0.5rem;
   cursor: pointer;
 }
@@ -248,7 +248,7 @@ li {
 
 .dialogue {
   background-color: white;
-  height: 10rem;
+  height: 12rem;
   width: 27rem;
   margin: 11rem auto;
   border-radius: 5px;
@@ -296,4 +296,30 @@ li {
 
 .flex-column {
   flex-direction: column;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  position: absolute;
+  top: 43.5%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 40px;
+  will-change: transform;
 }
