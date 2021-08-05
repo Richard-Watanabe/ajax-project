@@ -55,8 +55,7 @@
     float: right;
     margin-right: 0.5rem;
     cursor: pointer;
-    position: relative;
-    bottom: 0.2rem;
+    margin-top: -0.12rem;
   }
 
   i.fa-window-close {
@@ -64,14 +63,13 @@
     margin-right: 0.1rem;
     cursor: pointer;
     float: right;
-    position: relative;
-    bottom: 0.1rem;
+    margin-top: -0.05rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
-    max-width: 1400px;
+    max-width: 1350px;
   }
 
   .column-full,
@@ -112,20 +110,16 @@
   i.fa-edit {
     float: right;
     font-size: 1.7rem;
-    margin-top: 0.08rem;
     margin-right: 0.75rem;
     cursor: pointer;
-    position: relative;
-    bottom: 0.06rem;
+    margin-top: 0.01rem;
   }
 
   i.fa-window-close {
     float: right;
     font-size: 1.7rem;
-    margin-top: 0.025rem;
     margin-right: 0.5rem;
     cursor: pointer;
-    position: relative;
-    top: 0.1rem;
+    margin-top: 0.08rem;
   }
 }

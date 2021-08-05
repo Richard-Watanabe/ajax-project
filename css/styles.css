@@ -1,7 +1,7 @@
 * {
   font-family: sans-serif;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 label {
@@ -216,7 +216,7 @@ li {
 .fa-edit {
   float: right;
   font-size: 1.6rem;
-  margin-top: 0.05rem;
+  margin-top: 0.2rem;
   margin-right: 0.75rem;
   cursor: pointer;
 }
@@ -224,7 +224,7 @@ li {
 .fa-window-close {
   float: right;
   font-size: 1.7rem;
-  margin-top: 0.025rem;
+  margin-top: 0.2rem;
   margin-right: 0.5rem;
   cursor: pointer;
 }
@@ -248,7 +248,7 @@ li {
 
 .dialogue {
   background-color: white;
-  height: 10rem;
+  height: 12rem;
   width: 27rem;
   margin: 11rem auto;
   border-radius: 5px;
@@ -317,7 +317,7 @@ li {
   content: "";
   height: 40px;
   position: absolute;
-  top: 50%;
+  top: 43.5%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   width: 40px;

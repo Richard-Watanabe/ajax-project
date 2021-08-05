@@ -61,6 +61,9 @@ function populateSearchBar() {
       $parent.appendChild($option);
     }
   });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
+  });
   xhr.send();
 }
 
@@ -134,6 +137,9 @@ function addPoster(movieName, parent, insertBefore) {
     $posterLink.setAttribute('class', 'ghibli-image');
     parent.insertBefore($posterLink, insertBefore);
   });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
+  });
   xhr.send();
 }
 
@@ -152,6 +158,9 @@ function addDescription(parent) {
         parent.appendChild($description);
       }
     }
+  });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
 }
