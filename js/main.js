@@ -18,6 +18,8 @@ var $divModal = document.querySelector('.modal');
 var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
 var $loading = document.querySelector('.spin');
+var $introModal = document.querySelector('.intro-modal');
+var $ok = document.querySelector('.ok');
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -41,6 +43,8 @@ $ulParent.addEventListener('click', showEditForm);
 $ulParent.addEventListener('click', openModal);
 $cancel.addEventListener('click', closeModal);
 $confirm.addEventListener('click', deleteReview);
+window.addEventListener('load', openIntro);
+$ok.addEventListener('click', closeIntroModal);
 
 function populateSearchBar() {
   var xhr = new XMLHttpRequest();
@@ -331,7 +335,7 @@ function showEditForm(event) {
 
 function openModal(event) {
   if (event.target.matches('.fa-window-close')) {
-    $divModal.className = 'modal overlay';
+    $divModal.className = 'modal';
     var stringId = event.target.closest('li').getAttribute('data-review-id');
     for (var i = 0; i < ghibliData.reviews.length; i++) {
       if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
@@ -359,4 +363,15 @@ function deleteReview(event) {
   if (ghibliData.reviews.length === 0) {
     $noReview.className = 'row text-align no-review justify-center container';
   }
+}
+
+function openIntro(event) {
+  if (!localStorage.getItem('popupShown')) {
+    $introModal.className = 'intro-modal';
+  }
+  localStorage.setItem('popupShown', true);
+}
+
+function closeIntroModal(event) {
+  $introModal.className = 'intro-modal hidden';
 }

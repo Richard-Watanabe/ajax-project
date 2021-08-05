@@ -19,6 +19,12 @@ li {
   list-style-type: none;
 }
 
+span {
+  color: #02aff0;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
 .review-bar {
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
@@ -286,8 +292,9 @@ li {
 }
 
 .question {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   font-weight: 500;
+  color: #585858;
 }
 
 .no-review-text {
@@ -322,4 +329,19 @@ li {
   transform: translate3d(-50%, -50%, 0);
   width: 40px;
   will-change: transform;
+}
+
+.ok {
+  background-color: #0291c8;
+  border-radius: 5px;
+  border: none;
+  padding: 0.35rem 0.4rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.ok:hover {
+  background-color: #006d98;
 }
