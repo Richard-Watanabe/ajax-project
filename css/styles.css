@@ -74,8 +74,10 @@ span {
   transform: scale(1.1);
 }
 
-.my-review-nav:hover {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .my-review-nav:hover {
+    transform: scale(1.1);
+  }
 }
 
 .select {
@@ -92,11 +94,11 @@ span {
 }
 
 .go {
-  width: 12%;
+  width: 15%;
   background-color: #0291c8;
   border-radius: 5px;
   border: none;
-  padding: 0.35rem 0.4rem;
+  padding: 0.35rem 0;
   font-size: 1.5rem;
   margin-left: 0.3rem;
   cursor: pointer;
@@ -176,8 +178,8 @@ span {
   background-color: #00678c;
   border-radius: 5px;
   border: none;
-  padding: 0.5rem 1.2rem;
-  font-size: 1.5rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   text-decoration: none;
 }
