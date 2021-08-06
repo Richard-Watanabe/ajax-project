@@ -44,17 +44,6 @@ span {
   background-color: #02aff0;
 }
 
-.flex-end {
-  justify-content: flex-end;
-}
-
-.justify-center {
-  justify-content: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .white-text {
   color: white;
 }
@@ -137,14 +126,6 @@ span {
   transform: scale(1.05);
 }
 
-.space-between {
-  justify-content: space-between;
-}
-
-.align-center {
-  align-items: center;
-}
-
 .title-blue {
   background-color: #00678c;
 }
@@ -208,10 +189,6 @@ span {
 
 .margin-bottom {
   margin-bottom: 5rem;
-}
-
-.text-align {
-  text-align: center;
 }
 
 .no-review {
@@ -301,10 +278,6 @@ span {
 
 .no-review-text {
   margin-bottom: 3rem;
-}
-
-.flex-column {
-  flex-direction: column;
 }
 
 @keyframes spinner {
