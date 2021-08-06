@@ -232,8 +232,11 @@ function createReview(review) {
   $newColumnDiv.setAttribute('class', 'column-half');
 
   var $newTitle = document.createElement('div');
-  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic');
+  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic row space-between');
   $newTitle.textContent = review.title;
+
+  var $iconDiv = document.createElement('div');
+  $iconDiv.setAttribute('class', 'align-right');
 
   var $editIcon = document.createElement('i');
   $editIcon.setAttribute('class', 'far fa-edit');
@@ -269,8 +272,10 @@ function createReview(review) {
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
-  $newTitle.appendChild($deleteIcon);
-  $newTitle.appendChild($editIcon);
+  $newTitle.appendChild($iconDiv);
+
+  $iconDiv.appendChild($deleteIcon);
+  $iconDiv.appendChild($editIcon);
 
   $newColumnDiv.appendChild($newTitle);
   $newColumnDiv.appendChild($newImage);
@@ -406,9 +411,6 @@ function movieMatchCount(parent, insertBefore) {
     var number = countCheck(titleArray, titleArray2);
     $number.textContent = number;
     $allNumber.textContent = allNumber;
-    // ghibliData.matchCount = reviewedMovieCount;
-    // number.textContent = ghibliData.matchCount;
-    // parent.prepend(number, $ulParent);
   });
   xhr.addEventListener('error', function () {
     window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');

@@ -32,6 +32,7 @@ span {
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
+  margin-right: 0.2rem;
 }
 
 .search {
@@ -74,8 +75,10 @@ span {
   transform: scale(1.1);
 }
 
-.my-review-nav:hover {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .my-review-nav:hover {
+    transform: scale(1.1);
+  }
 }
 
 .select {
@@ -92,11 +95,11 @@ span {
 }
 
 .go {
-  width: 12%;
+  width: 15%;
   background-color: #0291c8;
   border-radius: 5px;
   border: none;
-  padding: 0.35rem 0.4rem;
+  padding: 0.35rem 0;
   font-size: 1.5rem;
   margin-left: 0.3rem;
   cursor: pointer;
@@ -176,8 +179,8 @@ span {
   background-color: #00678c;
   border-radius: 5px;
   border: none;
-  padding: 0.5rem 1.2rem;
-  font-size: 1.5rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   text-decoration: none;
 }
@@ -205,8 +208,8 @@ span {
 .fa-window-close {
   float: right;
   font-size: 1.7rem;
-  margin-top: 0.2rem;
-  margin-right: 0.5rem;
+  margin-top: 0.175rem;
+  margin-right: 0;
   cursor: pointer;
 }
 
@@ -230,13 +233,15 @@ span {
 .dialogue {
   background-color: white;
   height: 12rem;
-  width: 27rem;
+  width: 22rem;
   margin: 11rem auto;
   border-radius: 5px;
   padding-top: 1rem;
 }
 
 .cancel {
+  position: relative;
+  top: 1rem;
   background-color: #b6b6b6;
   color: black;
   padding: 0.5rem 1rem;
@@ -249,6 +254,8 @@ span {
 }
 
 .confirm {
+  position: relative;
+  top: 1rem;
   background-color: #dc2828;
   color: white;
   padding: 0.5rem 1rem;
@@ -261,45 +268,17 @@ span {
 }
 
 .modal-button {
-  margin-left: 3rem;
-  margin-right: 3rem;
   margin-top: 2rem;
 }
 
 .question {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-weight: 500;
   color: #585858;
 }
 
 .no-review-text {
   margin-bottom: 3rem;
-}
-
-@keyframes spinner {
-  0% {
-    transform: translate3d(-50%, -50%, 0) rotate(0deg);
-  }
-
-  100% {
-    transform: translate3d(-50%, -50%, 0) rotate(360deg);
-  }
-}
-
-.spin::before {
-  animation: 1.5s linear infinite spinner;
-  animation-play-state: inherit;
-  border: solid 5px #cfd0d1;
-  border-bottom-color: #1c87c9;
-  border-radius: 50%;
-  content: "";
-  height: 40px;
-  position: absolute;
-  top: 43.5%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  width: 40px;
-  will-change: transform;
 }
 
 .ok {
@@ -312,7 +291,6 @@ span {
   text-decoration: none;
   color: white;
   position: relative;
-  top: 1rem;
 }
 
 .ok:hover {
@@ -340,4 +318,30 @@ span {
   text-align: right;
   font-size: 1.5rem;
   color: #006d98;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  position: absolute;
+  top: 43.5%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 40px;
+  will-change: transform;
 }
