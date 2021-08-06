@@ -158,6 +158,7 @@ span {
   width: 100%;
   border-radius: 5px;
   font-size: 1.2rem;
+  -webkit-appearance: none;
 }
 
 .review-box:focus {
@@ -174,6 +175,7 @@ span {
   cursor: pointer;
   float: right;
   margin: 0.5rem 0;
+  -webkit-appearance: none;
 }
 
 .add-new-button {
