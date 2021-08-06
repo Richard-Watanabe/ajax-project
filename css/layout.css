@@ -13,6 +13,37 @@
   flex-wrap: wrap;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.margin-bottom {
+  margin-bottom: 5rem;
+}
+
 .column-full,
 .column-75,
 .column-half {
@@ -69,7 +100,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
-    max-width: 1350px;
+    max-width: 1291px;
   }
 
   .column-full,

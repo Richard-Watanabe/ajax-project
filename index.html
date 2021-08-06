@@ -55,6 +55,20 @@
     </div>
   </header>
   <main>
+    <div data-view="home-screen" class="intro-modal hidden">
+      <div class="overlay">
+        <div class="dialogue">
+          <div class="column-full">
+            <div class="row justify-center">
+              <p class="text-align question">Welcome to <span>MY GHIBLI MOVIE REVIEW</span><br>Start making your list of Studio Ghibli Film reviews!</p>
+            </div>
+            <div class="row justify-center text-align">
+              <a href="#" class="ok">START</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div data-view="review-gallery" class="modal hidden">
       <div class="overlay">
         <div class="dialogue">
@@ -73,7 +87,7 @@
     <div data-view="review-form" class="view hidden">
       <div class="container parent">
         <form class="review-text">
-          <textarea type="text-area" id="review" rows="43" name="review"
+          <textarea type="text-area" id="review" rows="15" name="review"
             placeholder="Write your review here!" class="review-box" required></textarea>
           <input type="submit" value="SAVE"
             class="white-text save margin-bottom">
@@ -81,13 +95,16 @@
       </div>
     </div>
     <div data-view="review-gallery" class="view hidden">
-      <div class = "column-full">
+      <div class = "column-full count-parent">
         <div class="row text-align no-review justify-center container">
           <div class="no-review-text">You don't have any reviews yet.</div>
           <a href="#" class="add-new-button white-text">Choose a movie &amp; Write a review!</a>
         </div>
-          <ul class="container">
-          </ul>
+        <div class="container">
+          <div class="count-text">Ghibli Movies Reviewed: <span class="number"></span>/<span class="all-number"></span></div>
+        </div>
+        <ul class="container">
+        </ul>
       </div>
     </div>
   </main>
