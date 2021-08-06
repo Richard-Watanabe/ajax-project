@@ -103,6 +103,7 @@ span {
   font-size: 1.5rem;
   margin-left: 0.3rem;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 .go:hover {
