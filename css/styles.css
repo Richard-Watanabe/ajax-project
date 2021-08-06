@@ -232,13 +232,15 @@ span {
 .dialogue {
   background-color: white;
   height: 12rem;
-  width: 27rem;
+  width: 22rem;
   margin: 11rem auto;
   border-radius: 5px;
   padding-top: 1rem;
 }
 
 .cancel {
+  position: relative;
+  top: 1rem;
   background-color: #b6b6b6;
   color: black;
   padding: 0.5rem 1rem;
@@ -251,6 +253,8 @@ span {
 }
 
 .confirm {
+  position: relative;
+  top: 1rem;
   background-color: #dc2828;
   color: white;
   padding: 0.5rem 1rem;
@@ -263,13 +267,11 @@ span {
 }
 
 .modal-button {
-  margin-left: 3rem;
-  margin-right: 3rem;
   margin-top: 2rem;
 }
 
 .question {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-weight: 500;
   color: #585858;
 }
@@ -314,7 +316,6 @@ span {
   text-decoration: none;
   color: white;
   position: relative;
-  top: 1rem;
 }
 
 .ok:hover {

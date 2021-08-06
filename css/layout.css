@@ -44,6 +44,19 @@
   margin-bottom: 5rem;
 }
 
+.no-wrap {
+  flex-wrap: nowrap;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.position-lower {
+  position: relative;
+  top: 1rem;
+}
+
 .column-full,
 .column-75,
 .column-half {
