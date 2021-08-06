@@ -348,3 +348,26 @@ span {
 .ok:hover {
   background-color: #006d98;
 }
+
+.count-text {
+  text-align: right;
+  font-size: 1.4rem;
+  color: #006d98;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.number {
+  font-weight: 500;
+  text-align: right;
+  font-size: 1.5rem;
+  color: #0291c8;
+}
+
+.all-number {
+  font-weight: 500;
+  text-align: right;
+  font-size: 1.5rem;
+  color: #006d98;
+}

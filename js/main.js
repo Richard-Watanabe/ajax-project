@@ -20,6 +20,10 @@ var $confirm = document.querySelector('.confirm');
 var $loading = document.querySelector('.spin');
 var $introModal = document.querySelector('.intro-modal');
 var $ok = document.querySelector('.ok');
+var $countParent = document.querySelector('.count-parent');
+var $countText = document.querySelector('.count-text');
+var $number = document.querySelector('.number');
+var $allNumber = document.querySelector('.all-number');
 
 var $posterLink = document.createElement('img');
 var $title = document.createElement('div');
@@ -46,7 +50,7 @@ $confirm.addEventListener('click', deleteReview);
 window.addEventListener('load', openIntro);
 $ok.addEventListener('click', closeIntroModal);
 
-function populateSearchBar() {
+function populateSearchBar(parent) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
   $loading.className = 'spin';
@@ -71,7 +75,7 @@ function populateSearchBar() {
   xhr.send();
 }
 
-populateSearchBar();
+populateSearchBar($countParent);
 
 function populateForm(event) {
   event.preventDefault();
@@ -96,12 +100,15 @@ function saveReview(event) {
   };
   dataObject.reviewId = ghibliData.nextReviewId;
   ghibliData.nextReviewId++;
+  movieMatchCount($countParent);
+  $countText.className = 'count-text';
   switchView('review-gallery');
   if ($reviewNotes.textContent === '') {
     ghibliData.reviews.unshift(dataObject);
     $reviewParent.removeChild($rowDiv);
     var addForm = createReview(dataObject);
     $ulParent.prepend(addForm);
+    movieMatchCount($countParent);
     $noReview.className = 'hidden';
     $reviewForm.reset();
   } else {
@@ -300,6 +307,8 @@ function stayOnView(event) {
 
 if (ghibliData.reviews.length !== 0) {
   $noReview.className = 'hidden';
+} else {
+  $countText.className = 'hidden count-text';
 }
 
 function refreshGoHome(event) {
@@ -358,10 +367,12 @@ function deleteReview(event) {
       $list[i].remove($list[i]);
       switchView('review-gallery');
       $divModal.className = 'modal hidden';
+      movieMatchCount($countParent);
     }
   }
   if (ghibliData.reviews.length === 0) {
     $noReview.className = 'row text-align no-review justify-center container';
+    $countText.className = 'hidden count-text';
   }
 }
 
@@ -375,3 +386,46 @@ function openIntro(event) {
 function closeIntroModal(event) {
   $introModal.className = 'intro-modal hidden';
 }
+
+function movieMatchCount(parent, insertBefore) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
+  $loading.className = 'spin';
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    $loading.className = 'spin hidden';
+    var titleArray = [];
+    var titleArray2 = [];
+    for (var i = 0; i < xhr.response.length; i++) {
+      titleArray.push(xhr.response[i].title);
+    }
+    for (var j = 0; j < ghibliData.reviews.length; j++) {
+      titleArray2.push(ghibliData.reviews[j].title);
+    }
+    var allNumber = titleArray.length;
+    var number = countCheck(titleArray, titleArray2);
+    $number.textContent = number;
+    $allNumber.textContent = allNumber;
+    // ghibliData.matchCount = reviewedMovieCount;
+    // number.textContent = ghibliData.matchCount;
+    // parent.prepend(number, $ulParent);
+  });
+  xhr.addEventListener('error', function () {
+    window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
+  });
+  xhr.send();
+}
+
+function countCheck(first, second) {
+  var newArray = [];
+  for (var i = 0; i < first.length; i++) {
+    for (var j = 0; j < second.length; j++) {
+      if (first[i] === second[j] && !newArray.includes(first[i])) {
+        newArray.push(first[i]);
+      }
+    }
+  }
+  return newArray.length;
+}
+
+movieMatchCount($countParent);
