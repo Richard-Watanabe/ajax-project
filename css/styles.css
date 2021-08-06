@@ -87,6 +87,7 @@ span {
   font-size: 1.5rem;
   color: gray;
   padding: 0.2rem 0;
+  -webkit-appearance: none;
 }
 
 .select:focus {
@@ -158,7 +159,6 @@ span {
   width: 100%;
   border-radius: 5px;
   font-size: 1.2rem;
-  -webkit-appearance: none;
 }
 
 .review-box:focus {
