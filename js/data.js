@@ -14,9 +14,9 @@ if (oldReviewJSON !== null) {
   ghibliData = oldData;
 }
 
-function saveData(event) {
+const saveData = event => {
   const newReview = JSON.stringify(ghibliData);
   localStorage.setItem('ghibli-local-storage', newReview);
-}
+};
 
 window.addEventListener('beforeunload', saveData);
