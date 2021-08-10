@@ -131,7 +131,7 @@ function saveReview(event) {
 
 function addPoster(movieName, parent) {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=' + movieName);
+  xhr.open('GET', `https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=${movieName}`);
   $loading.className = 'spin';
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
@@ -144,7 +144,7 @@ function addPoster(movieName, parent) {
         posterPath = xhr.response.results[0].poster_path;
       }
     }
-    $posterLink.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + posterPath);
+    $posterLink.setAttribute('src', `https://image.tmdb.org/t/p/w500${posterPath}`);
     $posterLink.setAttribute('class', 'ghibli-image');
     parent.appendChild($posterLink);
   });
