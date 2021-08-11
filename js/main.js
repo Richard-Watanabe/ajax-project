@@ -33,30 +33,13 @@ const $reviewTitle = document.createElement('div');
 const $descriptionTitle = document.createElement('div');
 const $columnDiv = document.createElement('div');
 
-$search.addEventListener('submit', populateForm);
-$reviewForm.addEventListener('submit', saveReview);
-window.addEventListener('DOMContentLoaded', addReview);
-$myReviewNav.addEventListener('click', goToMyReviews);
-$myReview.addEventListener('click', goToMyReviews);
-$logoNav.addEventListener('click', goToHome);
-window.addEventListener('DOMContentLoaded', stayOnView);
-$newButton.addEventListener('click', goToHome);
-$noReview.addEventListener('click', goToHome);
-window.addEventListener('load', refreshGoHome);
-$ulParent.addEventListener('click', showEditForm);
-$ulParent.addEventListener('click', openModal);
-$cancel.addEventListener('click', closeModal);
-$confirm.addEventListener('click', deleteReview);
-window.addEventListener('load', openIntro);
-$ok.addEventListener('click', closeIntroModal);
-
-function populateSearchBar(parent) {
+const populateSearchBar = parent => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
   $loading.className = 'spin';
   xhr.responseType = 'json';
   const titleArray = [];
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.length; i++) {
       $loading.className = 'spin hidden';
       titleArray.push(xhr.response[i].title);
@@ -69,15 +52,15 @@ function populateSearchBar(parent) {
       $parent.appendChild($option);
     }
   });
-  xhr.addEventListener('error', function () {
+  xhr.addEventListener('error', () => {
     window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
-}
+};
 
 populateSearchBar($countParent);
 
-function populateForm(event) {
+const populateForm = event => {
   event.preventDefault();
   const title = $search.elements.title.value;
   const addForm = createForm(title);
@@ -88,9 +71,9 @@ function populateForm(event) {
   if ($rowDiv.childElementCount > 2) {
     $rowDiv.firstElementChild.remove();
   }
-}
+};
 
-function saveReview(event) {
+const saveReview = event => {
   event.preventDefault();
   const dataObject = {
     title: $title.textContent,
@@ -127,14 +110,14 @@ function saveReview(event) {
       }
     }
   }
-}
+};
 
-function addPoster(movieName, parent) {
+const addPoster = (movieName, parent) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `https://api.themoviedb.org/3/search/movie?api_key=e2317d1150ebe694b173d9560f5e95b8&query=${movieName}`);
   $loading.className = 'spin';
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     let posterPath;
     $loading.className = 'spin hidden';
     for (let i = 0; i < xhr.response.results.length; i++) {
@@ -148,18 +131,18 @@ function addPoster(movieName, parent) {
     $posterLink.setAttribute('class', 'ghibli-image');
     parent.appendChild($posterLink);
   });
-  xhr.addEventListener('error', function () {
+  xhr.addEventListener('error', () => {
     window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
-}
+};
 
-function addDescription(parent, insertBefore) {
+const addDescription = (parent, insertBefore) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
   $loading.className = 'spin';
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     $loading.className = 'spin hidden';
     for (let i = 0; i < xhr.response.length; i++) {
       if ($title.textContent === xhr.response[i].title) {
@@ -170,13 +153,38 @@ function addDescription(parent, insertBefore) {
       }
     }
   });
-  xhr.addEventListener('error', function () {
+  xhr.addEventListener('error', () => {
     window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
-}
+};
 
-function switchView(name) {
+const showEditForm = event => {
+  if (event.target.matches('.fa-edit')) {
+    const stringId = event.target.closest('li').getAttribute('data-review-id');
+    for (let i = 0; i < ghibliData.reviews.length; i++) {
+      if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
+        ghibliData.editing = ghibliData.reviews[i];
+      }
+    }
+    const title = $search.elements.title.value;
+    const addForm = createForm(title);
+    $reviewParent.prepend(addForm);
+    if ($rowDiv.childElementCount > 2) {
+      $rowDiv.firstElementChild.remove();
+    }
+    addPoster(ghibliData.editing.title, $columnDiv);
+    switchView('review-form');
+    $title.textContent = ghibliData.editing.title;
+    $posterLink.setAttribute('src', ghibliData.editing.image);
+    $descriptionTitle.textContent = 'Description:';
+    $description.textContent = ghibliData.editing.description;
+    $reviewTitle.textContent = 'Review:';
+    $reviewNotes.textContent = ghibliData.editing.review;
+  }
+};
+
+const switchView = name => {
   ghibliData.view = name;
   for (let i = 0; i < $view.length; i++) {
     if (name !== 'home-screen') {
@@ -188,9 +196,9 @@ function switchView(name) {
       $view[i].className = 'view hidden';
     }
   }
-}
+};
 
-function createForm(title) {
+const createForm = title => {
   $rowDiv.setAttribute('class', 'row');
 
   $columnDiv.setAttribute('class', 'column-half');
@@ -219,9 +227,9 @@ function createForm(title) {
   $rowDiv.appendChild($columnDiv2);
 
   return $rowDiv;
-}
+};
 
-function createReview(review) {
+const createReview = review => {
   const $newList = document.createElement('li');
   $newList.setAttribute('data-review-id', review.reviewId);
 
@@ -286,84 +294,16 @@ function createReview(review) {
   $newList.appendChild($newRowDiv);
 
   return $newList;
-}
+};
 
-function addReview(event) {
+const addReview = event => {
   for (let i = 0; i < ghibliData.reviews.length; i++) {
     const newReview = createReview(ghibliData.reviews[i]);
     $ulParent.appendChild(newReview);
   }
-}
+};
 
-function goToMyReviews(event) {
-  switchView('review-gallery');
-  $reviewForm.reset();
-}
-
-function goToHome(event) {
-  switchView('home-screen');
-  $reviewNotes.textContent = '';
-  $search.reset();
-}
-
-function stayOnView(event) {
-  switchView(ghibliData.view);
-}
-
-if (ghibliData.reviews.length !== 0) {
-  $noReview.className = 'hidden';
-} else {
-  $countText.className = 'hidden count-text';
-}
-
-function refreshGoHome(event) {
-  if (ghibliData.view !== 'review-gallery') {
-    switchView('home-screen');
-  }
-}
-
-function showEditForm(event) {
-  if (event.target.matches('.fa-edit')) {
-    const stringId = event.target.closest('li').getAttribute('data-review-id');
-    for (let i = 0; i < ghibliData.reviews.length; i++) {
-      if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
-        ghibliData.editing = ghibliData.reviews[i];
-      }
-    }
-    const title = $search.elements.title.value;
-    const addForm = createForm(title);
-    $reviewParent.prepend(addForm);
-    if ($rowDiv.childElementCount > 2) {
-      $rowDiv.firstElementChild.remove();
-    }
-    addPoster(ghibliData.editing.title, $columnDiv);
-    switchView('review-form');
-    $title.textContent = ghibliData.editing.title;
-    $posterLink.setAttribute('src', ghibliData.editing.image);
-    $descriptionTitle.textContent = 'Description:';
-    $description.textContent = ghibliData.editing.description;
-    $reviewTitle.textContent = 'Review:';
-    $reviewNotes.textContent = ghibliData.editing.review;
-  }
-}
-
-function openModal(event) {
-  if (event.target.matches('.fa-window-close')) {
-    $divModal.className = 'modal';
-    const stringId = event.target.closest('li').getAttribute('data-review-id');
-    for (let i = 0; i < ghibliData.reviews.length; i++) {
-      if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
-        ghibliData.editing = ghibliData.reviews[i];
-      }
-    }
-  }
-}
-
-function closeModal(event) {
-  $divModal.className = 'modal hidden';
-}
-
-function deleteReview(event) {
+const deleteReview = event => {
   for (let i = 0; i < ghibliData.reviews.length; i++) {
     if (ghibliData.reviews[i].reviewId === ghibliData.editing.reviewId) {
       ghibliData.reviews[i] = ghibliData.editing;
@@ -379,25 +319,68 @@ function deleteReview(event) {
     $noReview.className = 'row text-align no-review justify-center container';
     $countText.className = 'hidden count-text';
   }
+};
+
+const goToMyReviews = event => {
+  switchView('review-gallery');
+  $reviewForm.reset();
+};
+
+const goToHome = event => {
+  switchView('home-screen');
+  $reviewNotes.textContent = '';
+  $search.reset();
+};
+
+const stayOnView = event => {
+  switchView(ghibliData.view);
+};
+
+if (ghibliData.reviews.length !== 0) {
+  $noReview.className = 'hidden';
+} else {
+  $countText.className = 'hidden count-text';
 }
 
-function openIntro(event) {
+const refreshGoHome = event => {
+  if (ghibliData.view !== 'review-gallery') {
+    switchView('home-screen');
+  }
+};
+
+const openModal = event => {
+  if (event.target.matches('.fa-window-close')) {
+    $divModal.className = 'modal';
+    const stringId = event.target.closest('li').getAttribute('data-review-id');
+    for (let i = 0; i < ghibliData.reviews.length; i++) {
+      if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
+        ghibliData.editing = ghibliData.reviews[i];
+      }
+    }
+  }
+};
+
+const closeModal = event => {
+  $divModal.className = 'modal hidden';
+};
+
+const openIntro = event => {
   if (!localStorage.getItem('popupShown')) {
     $introModal.className = 'intro-modal';
   }
   localStorage.setItem('popupShown', true);
-}
+};
 
-function closeIntroModal(event) {
+const closeIntro = event => {
   $introModal.className = 'intro-modal hidden';
-}
+};
 
-function movieMatchCount(parent, insertBefore) {
+const movieMatchCount = (parent, insertBefore) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/films');
   $loading.className = 'spin';
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     $loading.className = 'spin hidden';
     const titleArray = [];
     const titleArray2 = [];
@@ -412,13 +395,15 @@ function movieMatchCount(parent, insertBefore) {
     $number.textContent = number;
     $allNumber.textContent = allNumber;
   });
-  xhr.addEventListener('error', function () {
+  xhr.addEventListener('error', () => {
     window.alert('Sorry, there was an error connecting to the network! Please check your internet connection and try again.');
   });
   xhr.send();
-}
+};
 
-function countCheck(first, second) {
+movieMatchCount($countParent);
+
+const countCheck = (first, second) => {
   const newArray = [];
   for (let i = 0; i < first.length; i++) {
     for (let j = 0; j < second.length; j++) {
@@ -428,6 +413,21 @@ function countCheck(first, second) {
     }
   }
   return newArray.length;
-}
+};
 
-movieMatchCount($countParent);
+$search.addEventListener('submit', populateForm);
+$reviewForm.addEventListener('submit', saveReview);
+window.addEventListener('DOMContentLoaded', addReview);
+$myReviewNav.addEventListener('click', goToMyReviews);
+$myReview.addEventListener('click', goToMyReviews);
+$logoNav.addEventListener('click', goToHome);
+window.addEventListener('DOMContentLoaded', stayOnView);
+$newButton.addEventListener('click', goToHome);
+$noReview.addEventListener('click', goToHome);
+window.addEventListener('load', refreshGoHome);
+$ulParent.addEventListener('click', showEditForm);
+$ulParent.addEventListener('click', openModal);
+$cancel.addEventListener('click', closeModal);
+$confirm.addEventListener('click', deleteReview);
+window.addEventListener('load', openIntro);
+$ok.addEventListener('click', closeIntro);
