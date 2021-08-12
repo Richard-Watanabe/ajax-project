@@ -29,6 +29,8 @@ Try the application live at [https://richard-watanabe.github.io/my-ghibli-movie-
 
 ## Preview
 
+https://user-images.githubusercontent.com/85139853/129148819-09e9e30b-8932-4735-af0d-7288bf8564c2.mp4
+
 ## Features to Come
 - User can rate any film with a 5-star rating system.
 - User can favorita a film.
