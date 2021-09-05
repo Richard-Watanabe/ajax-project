@@ -33,6 +33,6 @@ Try the application live at [https://richard-watanabe.github.io/my-ghibli-movie-
 
 ## Features to Come
 - User can rate any film with a 5-star rating system.
-- User can favorita a film.
+- User can favorite a film.
 - User can rank the films once they write a review for all films.
 
