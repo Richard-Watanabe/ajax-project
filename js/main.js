@@ -160,7 +160,7 @@ const addDescription = (parent, insertBefore) => {
 };
 
 const showEditForm = event => {
-  if (event.target.matches('.fa-edit')) {
+  if (event.target.matches('.edit-icon')) {
     const stringId = event.target.closest('li').getAttribute('data-review-id');
     for (let i = 0; i < ghibliData.reviews.length; i++) {
       if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
@@ -240,17 +240,17 @@ const createReview = review => {
   $newColumnDiv.setAttribute('class', 'column-half');
 
   const $newTitle = document.createElement('h2');
-  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic row space-between');
+  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic space-between');
   $newTitle.textContent = review.title;
 
   const $iconDiv = document.createElement('div');
   $iconDiv.setAttribute('class', 'align-right');
 
   const $editIcon = document.createElement('i');
-  $editIcon.setAttribute('class', 'far fa-edit');
+  $editIcon.setAttribute('class', 'far fa-edit edit-icon');
 
   const $deleteIcon = document.createElement('i');
-  $deleteIcon.setAttribute('class', 'far fa-window-close');
+  $deleteIcon.setAttribute('class', 'far fa-window-close close-icon');
 
   const $newImage = document.createElement('img');
   $newImage.setAttribute('src', review.image);
@@ -268,7 +268,7 @@ const createReview = review => {
   $newColumnDiv2.setAttribute('class', 'column-half');
 
   const $newReviewTitle = document.createElement('h2');
-  $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
+  $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text align-center row');
   $newReviewTitle.textContent = 'Review';
 
   const $newReviewText = document.createElement('div');
@@ -280,7 +280,7 @@ const createReview = review => {
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
-  $newTitle.appendChild($iconDiv);
+  $newReviewTitle.appendChild($iconDiv);
 
   $iconDiv.appendChild($deleteIcon);
   $iconDiv.appendChild($editIcon);
@@ -349,7 +349,7 @@ const refreshGoHome = event => {
 };
 
 const openModal = event => {
-  if (event.target.matches('.fa-window-close')) {
+  if (event.target.matches('.close-icon')) {
     $divModal.className = 'modal';
     const stringId = event.target.closest('li').getAttribute('data-review-id');
     for (let i = 0; i < ghibliData.reviews.length; i++) {

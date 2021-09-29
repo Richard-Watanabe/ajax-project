@@ -204,27 +204,24 @@ h2 {
   color: #585858;
 }
 
-.fa-edit {
+.edit-icon {
   float: right;
-  font-size: 1.6rem;
-  margin-top: 0.2rem;
-  margin-right: 0.75rem;
+  position: relative;
+  right: 0.4rem;
+  bottom: 0.05rem;
   cursor: pointer;
 }
 
-.fa-window-close {
+.close-icon {
   float: right;
-  font-size: 1.7rem;
-  margin-top: 0.175rem;
-  margin-right: 0;
   cursor: pointer;
 }
 
-.fa-edit:hover {
+.edit-icon:hover {
   color: rgb(219, 51, 219);
 }
 
-.fa-window-close:hover {
+.close-icon:hover {
   color: red;
 }
 
