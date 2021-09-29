@@ -26,11 +26,11 @@ const $number = document.querySelector('.number');
 const $allNumber = document.querySelector('.all-number');
 
 const $posterLink = document.createElement('img');
-const $title = document.createElement('div');
+const $title = document.createElement('h2');
 const $description = document.createElement('div');
 const $rowDiv = document.createElement('div');
-const $reviewTitle = document.createElement('div');
-const $descriptionTitle = document.createElement('div');
+const $reviewTitle = document.createElement('h2');
+const $descriptionTitle = document.createElement('h2');
 const $columnDiv = document.createElement('div');
 
 const populateSearchBar = parent => {
@@ -239,7 +239,7 @@ const createReview = review => {
   const $newColumnDiv = document.createElement('div');
   $newColumnDiv.setAttribute('class', 'column-half');
 
-  const $newTitle = document.createElement('div');
+  const $newTitle = document.createElement('h2');
   $newTitle.setAttribute('class', 'title-blue review-bar white-text italic row space-between');
   $newTitle.textContent = review.title;
 
@@ -256,7 +256,7 @@ const createReview = review => {
   $newImage.setAttribute('src', review.image);
   $newImage.setAttribute('class', 'ghibli-image');
 
-  const $newDescriptionTitle = document.createElement('div');
+  const $newDescriptionTitle = document.createElement('h2');
   $newDescriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
   $newDescriptionTitle.textContent = 'Description:';
 
@@ -267,7 +267,7 @@ const createReview = review => {
   const $newColumnDiv2 = document.createElement('div');
   $newColumnDiv2.setAttribute('class', 'column-half');
 
-  const $newReviewTitle = document.createElement('div');
+  const $newReviewTitle = document.createElement('h2');
   $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
   $newReviewTitle.textContent = 'Review:';
 

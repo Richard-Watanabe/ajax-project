@@ -73,6 +73,12 @@
     max-width: 900px;
   }
 
+  .column-full,
+  .column-75,
+  .column-half {
+    padding: 0 0.75rem;
+  }
+
   .column-half {
     width: 50%;
   }
@@ -113,6 +119,12 @@
 @media screen and (min-width: 1280px) {
   .container {
     max-width: 1291px;
+  }
+
+  .column-full,
+  .column-75,
+  .column-half {
+    padding: 0 0.75rem;
   }
 
   .column-half {
