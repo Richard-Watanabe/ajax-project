@@ -21,7 +21,7 @@
   <div class="spin hidden"></div>
   <div data-view="home-screen" class="view">
     <div class="home-body">
-      <div class="container">
+      <div class="container row justify-center">
         <nav class="column-full">
           <div class="row flex-end">
             <a href="#" class ="white-text my-review">My Reviews</a>
@@ -32,12 +32,14 @@
             <img src="images/app-logo.png" alt="ghibli-logo" class="ghibli-logo">
           </div>
         </div>
-        <form class="search row">
-          <label for="title" class="white-text column-full">Find movie</label>
+        <form class="search">
+          <label for="title" class="white-text">Find movie</label>
+          <div class="row space-between">
             <select id="title" name="title" class="select" required >
               <option value="">Select movie</option>
             </select>
-          <input type="submit" value="GO" class="white-text go">
+            <input type="submit" value="GO" class="white-text go">
+          </div>
         </form>
       </div>
     </div>

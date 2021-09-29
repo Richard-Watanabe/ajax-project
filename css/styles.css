@@ -36,7 +36,7 @@ span {
 }
 
 .search {
-  margin-left: 1rem;
+  margin: 0 auto;
 }
 
 .home-body {
@@ -97,13 +97,12 @@ span {
 }
 
 .go {
-  width: 15%;
+  width: 18%;
   background-color: #0291c8;
   border-radius: 5px;
   border: none;
   padding: 0.35rem 0;
   font-size: 1.5rem;
-  margin-left: 0.3rem;
   cursor: pointer;
   -webkit-appearance: none;
 }
