@@ -26,6 +26,10 @@ span {
   font-size: 1.1rem;
 }
 
+h2 {
+  margin-top: 0.25rem;
+}
+
 .review-bar {
   padding: 0.3rem 0.5rem;
   border-radius: 5px;

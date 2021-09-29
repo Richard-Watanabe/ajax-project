@@ -177,9 +177,9 @@ const showEditForm = event => {
     switchView('review-form');
     $title.textContent = ghibliData.editing.title;
     $posterLink.setAttribute('src', ghibliData.editing.image);
-    $descriptionTitle.textContent = 'Description:';
+    $descriptionTitle.textContent = 'Description';
     $description.textContent = ghibliData.editing.description;
-    $reviewTitle.textContent = 'Review:';
+    $reviewTitle.textContent = 'Review';
     $reviewNotes.textContent = ghibliData.editing.review;
   }
 };
@@ -207,13 +207,13 @@ const createForm = title => {
   $title.textContent = title;
 
   $descriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $descriptionTitle.textContent = 'Description:';
+  $descriptionTitle.textContent = 'Description';
 
   const $columnDiv2 = document.createElement('div');
   $columnDiv2.setAttribute('class', 'column-half');
 
   $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $reviewTitle.textContent = 'Review:';
+  $reviewTitle.textContent = 'Review';
 
   addDescription($columnDiv2, $reviewTitle);
 
@@ -258,7 +258,7 @@ const createReview = review => {
 
   const $newDescriptionTitle = document.createElement('h2');
   $newDescriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $newDescriptionTitle.textContent = 'Description:';
+  $newDescriptionTitle.textContent = 'Description';
 
   const $newDescription = document.createElement('div');
   $newDescription.textContent = review.description;
@@ -269,7 +269,7 @@ const createReview = review => {
 
   const $newReviewTitle = document.createElement('h2');
   $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $newReviewTitle.textContent = 'Review:';
+  $newReviewTitle.textContent = 'Review';
 
   const $newReviewText = document.createElement('div');
   $newReviewText.setAttribute('class', 'text review-notes');
