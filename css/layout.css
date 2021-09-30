@@ -99,20 +99,24 @@
     font-size: 1rem;
   }
 
-  i.fa-edit {
+  i.edit-icon {
     font-size: 1.5rem;
     float: right;
     margin-right: 0.5rem;
     cursor: pointer;
     margin-top: -0.12rem;
+    position: relative;
+    top: 0.05rem;
   }
 
-  i.fa-window-close {
+  i.close-icon {
     font-size: 1.5rem;
     margin-right: 0.1rem;
     cursor: pointer;
     float: right;
     margin-top: -0.05rem;
+    position: relative;
+    top: 0.05rem;
   }
 }
 
@@ -164,19 +168,13 @@
     font-size: 1.2rem;
   }
 
-  i.fa-edit {
+  i.edit-icon {
+    font-size: 1.5rem;
     float: right;
-    font-size: 1.7rem;
-    margin-right: 0.75rem;
-    cursor: pointer;
-    margin-top: 0.05rem;
-  }
-
-  i.fa-window-close {
-    float: right;
-    font-size: 1.7rem;
     margin-right: 0.5rem;
     cursor: pointer;
-    margin-top: 0.18rem;
+    margin-top: -0.12rem;
+    position: relative;
+    bottom: 0.1rem;
   }
 }

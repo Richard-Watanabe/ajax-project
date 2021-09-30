@@ -26,6 +26,10 @@ span {
   font-size: 1.1rem;
 }
 
+h2 {
+  margin-top: 0.25rem;
+}
+
 .review-bar {
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
@@ -36,7 +40,7 @@ span {
 }
 
 .search {
-  margin-left: 1rem;
+  margin: 0 auto;
 }
 
 .home-body {
@@ -87,7 +91,7 @@ span {
   font-size: 1.5rem;
   color: gray;
   background-color: white;
-  padding: 0.2rem 0;
+  padding: 0.2rem 0.4rem;
   -webkit-appearance: none;
 }
 
@@ -97,13 +101,12 @@ span {
 }
 
 .go {
-  width: 15%;
+  width: 18%;
   background-color: #0291c8;
   border-radius: 5px;
   border: none;
   padding: 0.35rem 0;
   font-size: 1.5rem;
-  margin-left: 0.3rem;
   cursor: pointer;
   -webkit-appearance: none;
 }
@@ -153,7 +156,6 @@ span {
 .ghibli-image {
   object-fit: contain;
   width: 100%;
-  margin-bottom: 0.3rem;
 }
 
 .review-box {
@@ -201,27 +203,24 @@ span {
   color: #585858;
 }
 
-.fa-edit {
+.edit-icon {
   float: right;
-  font-size: 1.6rem;
-  margin-top: 0.2rem;
-  margin-right: 0.75rem;
+  position: relative;
+  right: 0.4rem;
+  bottom: 0.05rem;
   cursor: pointer;
 }
 
-.fa-window-close {
+.close-icon {
   float: right;
-  font-size: 1.7rem;
-  margin-top: 0.175rem;
-  margin-right: 0;
   cursor: pointer;
 }
 
-.fa-edit:hover {
+.edit-icon:hover {
   color: rgb(219, 51, 219);
 }
 
-.fa-window-close:hover {
+.close-icon:hover {
   color: red;
 }
 

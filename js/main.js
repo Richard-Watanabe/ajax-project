@@ -26,11 +26,11 @@ const $number = document.querySelector('.number');
 const $allNumber = document.querySelector('.all-number');
 
 const $posterLink = document.createElement('img');
-const $title = document.createElement('div');
+const $title = document.createElement('h2');
 const $description = document.createElement('div');
 const $rowDiv = document.createElement('div');
-const $reviewTitle = document.createElement('div');
-const $descriptionTitle = document.createElement('div');
+const $reviewTitle = document.createElement('h2');
+const $descriptionTitle = document.createElement('h2');
 const $columnDiv = document.createElement('div');
 
 const populateSearchBar = parent => {
@@ -160,7 +160,7 @@ const addDescription = (parent, insertBefore) => {
 };
 
 const showEditForm = event => {
-  if (event.target.matches('.fa-edit')) {
+  if (event.target.matches('.edit-icon')) {
     const stringId = event.target.closest('li').getAttribute('data-review-id');
     for (let i = 0; i < ghibliData.reviews.length; i++) {
       if (ghibliData.reviews[i].reviewId === parseInt(stringId)) {
@@ -177,9 +177,9 @@ const showEditForm = event => {
     switchView('review-form');
     $title.textContent = ghibliData.editing.title;
     $posterLink.setAttribute('src', ghibliData.editing.image);
-    $descriptionTitle.textContent = 'Description:';
+    $descriptionTitle.textContent = 'Description';
     $description.textContent = ghibliData.editing.description;
-    $reviewTitle.textContent = 'Review:';
+    $reviewTitle.textContent = 'Review';
     $reviewNotes.textContent = ghibliData.editing.review;
   }
 };
@@ -207,13 +207,13 @@ const createForm = title => {
   $title.textContent = title;
 
   $descriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $descriptionTitle.textContent = 'Description:';
+  $descriptionTitle.textContent = 'Description';
 
   const $columnDiv2 = document.createElement('div');
   $columnDiv2.setAttribute('class', 'column-half');
 
   $reviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $reviewTitle.textContent = 'Review:';
+  $reviewTitle.textContent = 'Review';
 
   addDescription($columnDiv2, $reviewTitle);
 
@@ -239,26 +239,26 @@ const createReview = review => {
   const $newColumnDiv = document.createElement('div');
   $newColumnDiv.setAttribute('class', 'column-half');
 
-  const $newTitle = document.createElement('div');
-  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic row space-between');
+  const $newTitle = document.createElement('h2');
+  $newTitle.setAttribute('class', 'title-blue review-bar white-text italic space-between');
   $newTitle.textContent = review.title;
 
   const $iconDiv = document.createElement('div');
   $iconDiv.setAttribute('class', 'align-right');
 
   const $editIcon = document.createElement('i');
-  $editIcon.setAttribute('class', 'far fa-edit');
+  $editIcon.setAttribute('class', 'far fa-edit edit-icon');
 
   const $deleteIcon = document.createElement('i');
-  $deleteIcon.setAttribute('class', 'far fa-window-close');
+  $deleteIcon.setAttribute('class', 'far fa-window-close close-icon');
 
   const $newImage = document.createElement('img');
   $newImage.setAttribute('src', review.image);
   $newImage.setAttribute('class', 'ghibli-image');
 
-  const $newDescriptionTitle = document.createElement('div');
+  const $newDescriptionTitle = document.createElement('h2');
   $newDescriptionTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $newDescriptionTitle.textContent = 'Description:';
+  $newDescriptionTitle.textContent = 'Description';
 
   const $newDescription = document.createElement('div');
   $newDescription.textContent = review.description;
@@ -267,9 +267,9 @@ const createReview = review => {
   const $newColumnDiv2 = document.createElement('div');
   $newColumnDiv2.setAttribute('class', 'column-half');
 
-  const $newReviewTitle = document.createElement('div');
-  $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text');
-  $newReviewTitle.textContent = 'Review:';
+  const $newReviewTitle = document.createElement('h2');
+  $newReviewTitle.setAttribute('class', 'sub-blue review-bar white-text align-center row');
+  $newReviewTitle.textContent = 'Review';
 
   const $newReviewText = document.createElement('div');
   $newReviewText.setAttribute('class', 'text review-notes');
@@ -280,7 +280,7 @@ const createReview = review => {
   $newColumnDiv2.appendChild($newReviewTitle);
   $newColumnDiv2.appendChild($newReviewText);
 
-  $newTitle.appendChild($iconDiv);
+  $newReviewTitle.appendChild($iconDiv);
 
   $iconDiv.appendChild($deleteIcon);
   $iconDiv.appendChild($editIcon);
@@ -349,7 +349,7 @@ const refreshGoHome = event => {
 };
 
 const openModal = event => {
-  if (event.target.matches('.fa-window-close')) {
+  if (event.target.matches('.close-icon')) {
     $divModal.className = 'modal';
     const stringId = event.target.closest('li').getAttribute('data-review-id');
     for (let i = 0; i < ghibliData.reviews.length; i++) {
